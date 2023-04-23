@@ -5,14 +5,14 @@ import expression.ArithmeticExpression;
 import expression.RationalExpression;
 
 public enum OperatorEnum {
-  ADDITION('+', ArithmeticExpression.class, "binary"),
-  SOUSTRACTION('-', ArithmeticExpression.class, "binary"),
-  MULTIPLICATION('*', ArithmeticExpression.class, "binary"),
-  DIVISION('/', ArithmeticExpression.class, "binary"),
-  NEGATION('~', ArithmeticExpression.class, "unary"),
-  UNION('+', RationalExpression.class, "binary"),
-  CONCATENATION('.', RationalExpression.class, "binary"),
-  ETOILE('*', RationalExpression.class, "unary");
+  ADDITION('+', ArithmeticExpression.class, "binaire"),
+  SOUSTRACTION('-', ArithmeticExpression.class, "binaire"),
+  MULTIPLICATION('*', ArithmeticExpression.class, "binaire"),
+  DIVISION('/', ArithmeticExpression.class, "binaire"),
+  NEGATION('~', ArithmeticExpression.class, "unaire"),
+  UNION('+', RationalExpression.class, "binaire"),
+  CONCATENATION('.', RationalExpression.class, "binaire"),
+  ETOILE('*', RationalExpression.class, "unaire");
 
   private final char symbol;
   private final Class<? extends IExpression> expressionClass;

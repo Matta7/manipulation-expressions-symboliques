@@ -11,11 +11,11 @@ public interface IExpedidFacade {
     String type();
 
     // !type [symbol]
-    String type(String symbol);
+    void type(String symbol);
 
     // !save filename
-    String save(String fileName);
+    void save(String fileName);
 
     // !load filename
-    String load(String fileName);
+    void load(String fileName);
 }
