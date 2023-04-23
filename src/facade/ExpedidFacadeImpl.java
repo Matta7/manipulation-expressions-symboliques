@@ -28,53 +28,57 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
     }
 
     public String enter(String command) {
-        if (Objects.equals(command, "!quit")) {
-            return this.quit();
+        String[] separetedCommand = command.split(" ");
 
-        } else if (command.startsWith("!type")) {
-            String[] separetedCommand = command.split(" ");
-            if(separetedCommand.length == 1) {
-                return this.type();
-            } else if (separetedCommand.length == 2) {
-                try {
-                    this.type(separetedCommand[1]);
-                    return ("Switched to "+ separetedCommand[1] + " type.");
-                } catch (IllegalArgumentException e) {
-                    return e.getMessage();
-                }
-            } else {
-                return "Error: Wrong number of argument.";
+        switch (separetedCommand[0]) {
+            case "!quit" -> {
+                return "quit";
             }
 
-        } else if (command.startsWith("!save")) {
-            String[] separetedCommand = command.split(" ");
-            if (separetedCommand.length == 2) {
-                try {
-                    this.save(separetedCommand[1]);
-                    return "Successfully saved file.";
-                } catch (IllegalArgumentException e) {
-                    return e.getMessage();
+            case "!type" -> {
+                if (separetedCommand.length == 1) {
+                    return this.type();
+                } else if (separetedCommand.length == 2) {
+                    try {
+                        this.type(separetedCommand[1]);
+                        return ("Switched to " + separetedCommand[1] + " type.");
+                    } catch (IllegalArgumentException e) {
+                        return e.getMessage();
+                    }
+                } else {
+                    return "Error: Wrong number of argument.";
                 }
-            } else {
-                return "Error: Wrong number of argument.";
             }
 
-        } else if (command.startsWith("!load")) {
-            String[] separetedCommand = command.split(" ");
-            if (separetedCommand.length == 2) {
-                try {
-                    this.load(separetedCommand[1]);
-                    return "Successfully loaded file.";
-                } catch (IllegalArgumentException e) {
-                    return e.getMessage();
+            case "!save" -> {
+                if (separetedCommand.length == 2) {
+                    try {
+                        this.save(separetedCommand[1]);
+                        return "Successfully saved file.";
+                    } catch (IllegalArgumentException | IllegalStateException e) {
+                        return e.getMessage();
+                    }
+                } else {
+                    return "Error: Wrong number of argument.";
                 }
-            } else {
-                return "Error: Wrong number of argument.";
             }
 
-        } else if (command.startsWith("!")){
+            case "!load" -> {
+                if (separetedCommand.length == 2) {
+                    try {
+                        this.load(separetedCommand[1]);
+                        return "Successfully loaded file.";
+                    } catch (IllegalArgumentException e) {
+                        return e.getMessage();
+                    }
+                } else {
+                    return "Error: Wrong number of argument.";
+                }
+            }
+        }
+
+        if (command.startsWith("!")) {
             return "Error: Unknown command \"" + command.split(" ")[0] + "\"";
-
         } else {
             // Write something at the top of the stack.
             try {
@@ -83,10 +87,6 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                 return e.getMessage();
             }
         }
-    }
-
-    public String quit() {
-        return "quit";
     }
 
     public String type() {

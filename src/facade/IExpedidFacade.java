@@ -4,9 +4,6 @@ public interface IExpedidFacade {
     // Method that interpret the command that the user entered using expedid editor
     String enter(String command);
 
-    // !quit
-    String quit();
-
     // !type
     String type();
 

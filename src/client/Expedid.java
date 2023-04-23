@@ -3,6 +3,7 @@ package client;
 import facade.ExpedidFacadeImpl;
 import facade.IExpedidFacade;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Expedid {
@@ -14,9 +15,8 @@ public class Expedid {
         while (true) {
             System.out.print("> ");
             command = scanner.nextLine();
-            System.out.println(command);
             String result = expedid.enter(command);
-            if (result == "quit") {
+            if (Objects.equals(result, "quit")) {
                 break;
             } else {
                 System.out.println(result);
