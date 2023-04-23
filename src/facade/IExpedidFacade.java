@@ -7,6 +7,9 @@ public interface IExpedidFacade {
     // !quit
     String quit();
 
+    // !type
+    String type();
+
     // !type [symbol]
     String type(String symbol);
 
