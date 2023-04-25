@@ -8,7 +8,6 @@ import factory.IExpressionFactory;
 
 import java.io.File;
 import java.util.EmptyStackException;
-import java.util.Iterator;
 import java.util.Stack;
 
 public class ExpedidFacadeImpl implements IExpedidFacade {
@@ -83,11 +82,9 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
             }
             // Write something at the top of the stack.
             try {
-                System.out.println(separetedCommand[0]);
                 IExpression expression = getNewExpression();
                 stack.push(expression);
-                showStack();
-                return null;
+                return showStack();
             } catch (IllegalStateException e) {
                 return e.getMessage();
             }
@@ -114,13 +111,20 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         }
     }
 
-    private void showStack() {
-        int stackLen = stack.size();
+    private String showStack() {
+        int stackIndex = stack.size();
+        StringBuilder stackStr = new StringBuilder();
 
-        Iterator<IExpression> value = stack.iterator();
-        while (value.hasNext()) {
-            System.out.println(stackLen + " : [" + actualType + "] " + "salutoui");
+        for (IExpression expression : stack) {
+            stackIndex-=1;
+            stackStr.append(stackIndex)
+                    .append(" : [")
+                    .append(expression.getToken())
+                    .append("] ")
+                    .append("expression\n");
         }
+
+        return stackStr.toString();
     }
 
     public String type() {
