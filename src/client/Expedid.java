@@ -22,5 +22,7 @@ public class Expedid {
                 System.out.println(result);
             }
         }
+
+        scanner.close();
     }
 }
