@@ -3,8 +3,12 @@ package expression;
 public interface IExpression {
 
   //Retourne l'identifieur du type d'expression
-  public String getToken();
+  String getToken();
+
+  void buildTree(String exp);
 
   //Sauvegarde l'expression dans un fichier au format XML
-  public void save(String fileName);
+  void save(String fileName);
+
+  String getString();
 }

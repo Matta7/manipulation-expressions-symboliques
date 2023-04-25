@@ -83,6 +83,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
             // Write something at the top of the stack.
             try {
                 IExpression expression = getNewExpression();
+                expression.buildTree(separetedCommand[0]);
                 stack.push(expression);
                 return showStack();
             } catch (IllegalStateException e) {
@@ -121,7 +122,8 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                     .append(" : [")
                     .append(expression.getToken())
                     .append("] ")
-                    .append("expression\n");
+                    .append(expression.getString())
+                    .append("\n");
         }
 
         return stackStr.toString();

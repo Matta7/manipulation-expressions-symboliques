@@ -9,6 +9,15 @@ public class RationalExpression implements IExpression {
     return "rat";
   }
 
+  public void buildTree(String exp) {
+
+  }
+
   public void save(String fileName) {
+  }
+
+  @Override
+  public String getString() {
+    return "";
   }
 }

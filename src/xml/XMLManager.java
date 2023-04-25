@@ -20,11 +20,11 @@ public class XMLManager {
         try {
             SAXParser saxParser = saxParserFactory.newSAXParser();
 
-            XMLToExpressionAdapter handler = new XMLToExpressionAdapter();
+            ExpressionHandler handler = new ExpressionHandler();
 
             saxParser.parse(fileName, handler);
 
-            return handler;
+            return handler.getExpression();
 
         } catch (Exception e) {
             e.printStackTrace();

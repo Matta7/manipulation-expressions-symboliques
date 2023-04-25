@@ -12,6 +12,15 @@ public class FunctionExpression implements IExpression {
     return "func";
   }
 
+  public void buildTree(String exp) {
+
+  }
+
   public void save(String fileName) {
+  }
+
+  @Override
+  public String getString() {
+    return "";
   }
 }
