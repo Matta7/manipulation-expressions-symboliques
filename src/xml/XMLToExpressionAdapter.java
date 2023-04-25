@@ -13,7 +13,6 @@ public class XMLToExpressionAdapter extends DefaultHandler implements IExpressio
 
     private String token;
 
-
     // IExpression methods
 
     @Override
@@ -25,8 +24,6 @@ public class XMLToExpressionAdapter extends DefaultHandler implements IExpressio
     public void save(String fileName) {
 
     }
-
-
 
     // DefaultHandler methods
 
@@ -63,7 +60,6 @@ public class XMLToExpressionAdapter extends DefaultHandler implements IExpressio
             String currency = attributes.getValue(0);
             System.out.printf("Currency :%s%n", currency);
         }
-
     }
 
     @Override

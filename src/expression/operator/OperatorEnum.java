@@ -12,11 +12,12 @@ public enum OperatorEnum {
   NEGATION('~', ArithmeticExpression.class, "unaire"),
   UNION('+', RationalExpression.class, "binaire"),
   CONCATENATION('.', RationalExpression.class, "binaire"),
-  ETOILE('*', RationalExpression.class, "unaire");
+  ETOILE('*', RationalExpression.class, "unaire"),
+  NEUTRAL('$', null, "unaire");
 
   private final char symbol;
   private final Class<? extends IExpression> expressionClass;
-  private final String arity;
+  private final String arity; // On aurait pu faire un enum ou mettre un int directement, certes.
 
   OperatorEnum(char symbol, Class<? extends IExpression> expressionClass, String arity) {
     this.symbol = symbol;
