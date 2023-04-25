@@ -1,27 +1,25 @@
 package facade;
 
-import java.util.Objects;
-
-import java.util.EmptyStackException;
-import java.util.Stack;
-
-import adapter.XMLToExpressionAdapter;
-
-import java.io.File;
-
+import xml.XMLManager;
 import expression.IExpression;
 import expression.operator.OperatorEnum;
+import factory.ExpressionFactory;
+import factory.IExpressionFactory;
+
+import java.io.File;
+import java.util.EmptyStackException;
+import java.util.Iterator;
+import java.util.Stack;
 
 public class ExpedidFacadeImpl implements IExpedidFacade {
     //Attributs
-    private Stack<IExpression> stack = new Stack<IExpression>();
+    private Stack<IExpression> stack = new Stack<>();
     private String actualType = "";
+
 
     private static ExpedidFacadeImpl expedidFacade = new ExpedidFacadeImpl();
 
-    private ExpedidFacadeImpl() {
-
-    }
+    private ExpedidFacadeImpl() {}
 
     public static ExpedidFacadeImpl getInstance() {
         return expedidFacade;
@@ -46,7 +44,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                         return e.getMessage();
                     }
                 } else {
-                    return "Error: Wrong number of argument.";
+                    return "Wrong number of argument.";
                 }
             }
 
@@ -59,7 +57,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                         return e.getMessage();
                     }
                 } else {
-                    return "Error: Wrong number of argument.";
+                    return "Wrong number of argument.";
                 }
             }
 
@@ -72,20 +70,56 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                         return e.getMessage();
                     }
                 } else {
-                    return "Error: Wrong number of argument.";
+                    return "Wrong number of argument.";
                 }
             }
         }
 
         if (command.startsWith("!")) {
-            return "Error: Unknown command \"" + command.split(" ")[0] + "\"";
+            return "Unknown command \"" + command.split(" ")[0] + "\"";
         } else {
+            if (separetedCommand.length != 1) {
+                return "Wrong number of argument.";
+            }
             // Write something at the top of the stack.
             try {
+                System.out.println(separetedCommand[0]);
+                IExpression expression = getNewExpression();
+                stack.push(expression);
+                showStack();
                 return null;
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException e) {
                 return e.getMessage();
             }
+        }
+    }
+
+    private IExpression getNewExpression() {
+        IExpressionFactory factory = ExpressionFactory.getInstance();
+
+        switch (actualType) {
+            case "arith" -> {
+                return factory.makeArithmetic();
+            }
+
+            case "func" -> {
+                return factory.makeFunction();
+            }
+
+            case "rat" -> {
+                return factory.makeRational();
+            }
+
+            default -> throw new IllegalStateException("No type defined");
+        }
+    }
+
+    private void showStack() {
+        int stackLen = stack.size();
+
+        Iterator<IExpression> value = stack.iterator();
+        while (value.hasNext()) {
+            System.out.println(stackLen + " : [" + actualType + "] " + "salutoui");
         }
     }
 
@@ -144,9 +178,11 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
             throw new IllegalArgumentException("Le fichier n'existe pas");
         }
 
-        XMLToExpressionAdapter adapter = new XMLToExpressionAdapter(file);
+        IExpression expression = XMLManager.load(fileName);
+
+        //XMLToExpressionAdapter adapter = new XMLToExpressionAdapter(fileName);
 
         //On ajoute l'expression à la pile
-        stack.push(adapter);
+        stack.push(expression);
     }
 }

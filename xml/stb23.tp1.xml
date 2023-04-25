@@ -1,0 +1,50 @@
+<stb:stb xmlns:stb="http://univrouen.fr/stb23">
+  <version>1000.00</version>
+  <title>string</title>
+
+  <date>2008-09-29T03:49:45</date>
+  <description>string</description>
+  <client>
+    <entity>string</entity>
+    <person gender="Mrs" lastname="string">string</person>
+    <!--You have a CHOICE of the next 2 items at this level-->
+    <!--Zero or more repetitions:-->
+    <mail>a.a@a.com</mail>
+    <!--Zero or more repetitions:-->
+    <tel>02 02 02 02 02</tel>
+  </client>
+  <team>
+    <!--2 to 8 repetitions:-->
+    <member>
+      <person gender="Miss" lastname="string">string</person>
+      <mail>a.a@a.com</mail>
+      <!--1 or more repetitions:-->
+      <function>string</function>
+    </member>
+    <member>
+      <person gender="Mr" lastname="string">string</person>
+      <mail>a.a@a.com</mail>
+      <!--1 or more repetitions:-->
+      <function>string</function>
+    </member>
+  </team>
+  <features>
+    <!--1 or more repetitions:-->
+    <feature name="string" section="3" number="3">
+      <description>string</description>
+      <priority>3</priority>
+      <!--Optional:-->
+      <delivery>2006-08-19T19:27:14+02:00</delivery>
+      <!--Optional:-->
+      <comment>string</comment>
+    </feature>
+    <feature name="string2" section="1" number="0">
+      <description>string</description>
+      <priority>1</priority>
+      <!--Optional:-->
+      <delivery>2006-08-19T19:27:14+02:00</delivery>
+      <!--Optional:-->
+      <comment>string</comment>
+    </feature>
+  </features>
+</stb:stb>
