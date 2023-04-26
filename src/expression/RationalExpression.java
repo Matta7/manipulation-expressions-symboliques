@@ -2,22 +2,22 @@ package expression;
 
 public class RationalExpression implements IExpression {
 
-  public RationalExpression() {
-  }
+  private String expression;
+
+  public RationalExpression() {}
 
   public String getToken() {
-    return "rat";
+      return "rational";
   }
 
-  public void buildTree(String exp) {
+  public String getExpression() {
+      return expression;
+  }
 
+  public void setExpression(String expression) {
+      this.expression = expression;
   }
 
   public void save(String fileName) {
-  }
-
-  @Override
-  public String getString() {
-    return "";
   }
 }

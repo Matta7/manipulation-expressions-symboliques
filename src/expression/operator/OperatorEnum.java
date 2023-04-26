@@ -2,42 +2,45 @@ package expression.operator;
 
 import expression.IExpression;
 import expression.ArithmeticExpression;
+import expression.FunctionExpression;
 import expression.RationalExpression;
 
+import java.util.Set;
+
 public enum OperatorEnum {
-  ADDITION('+', ArithmeticExpression.class, "binaire"),
-  SOUSTRACTION('-', ArithmeticExpression.class, "binaire"),
-  MULTIPLICATION('*', ArithmeticExpression.class, "binaire"),
-  DIVISION('/', ArithmeticExpression.class, "binaire"),
-  NEGATION('~', ArithmeticExpression.class, "unaire"),
-  UNION('+', RationalExpression.class, "binaire"),
-  CONCATENATION('.', RationalExpression.class, "binaire"),
-  ETOILE('*', RationalExpression.class, "unaire"),
-  NEUTRAL('$', null, "unaire");
+  ADDITION("+", Set.of("arith", "function"), 2),
+  SOUSTRACTION("-", Set.of("arith", "function"), 2),
+  MULTIPLICATION("*", Set.of("arith", "function"), 2),
+  DIVISION("/", Set.of("arith", "function"), 2),
+  NEGATION("~", Set.of("arith", "function"), 1),
+  UNION("+", Set.of("rational"), 2),
+  CONCATENATION(".", Set.of("rational"), 2),
+  ETOILE("*", Set.of("rational"), 1);
+  //NEUTRAL("$", null, 1);
 
-  private final char symbol;
-  private final Class<? extends IExpression> expressionClass;
-  private final String arity; // On aurait pu faire un enum ou mettre un int directement, certes.
+  private final String symbol;
+  private final Set<String> expressionType;
+  private final int arity;
 
-  OperatorEnum(char symbol, Class<? extends IExpression> expressionClass, String arity) {
+  OperatorEnum(String symbol, Set<String> expressionType, int arity) {
     this.symbol = symbol;
-    this.expressionClass = expressionClass;
+    this.expressionType = expressionType;
     this.arity = arity;
   }
 
-  public char getSymbol() {
+  public String getSymbol() {
     return symbol;
   }
 
-  public Class<? extends IExpression> getExpressionClass() {
-    return expressionClass;
+  public Set<String> getExpressionType() {
+    return expressionType;
   }
 
-  public String getArity() {
+  public int getArity() {
     return arity;
   }
 
-  public static OperatorEnum getOperator(char symbol) {
+  public static OperatorEnum getOperator(String symbol) {
     for (OperatorEnum operator : OperatorEnum.values()) {
       if (operator.getSymbol() == symbol) {
         return operator;
@@ -46,17 +49,22 @@ public enum OperatorEnum {
     return null;
   }
 
-  public static boolean isOperator(char symbol) {
+  public static boolean isOperator(String symbol) {
     return getOperator(symbol) != null;
   }
 
-  public static boolean isArithmeticOperator(char symbol) {
+  public static boolean isArithmeticOperator(String symbol) {
     OperatorEnum operator = getOperator(symbol);
-    return operator != null && operator.getExpressionClass() == ArithmeticExpression.class;
+    return operator != null && operator.getExpressionType().contains("arith");
   }
 
-  public static boolean isRationalOperator(char symbol) {
+  public static boolean isFunctionOperator(String symbol) {
     OperatorEnum operator = getOperator(symbol);
-    return operator != null && operator.getExpressionClass() == RationalExpression.class;
+    return operator != null && operator.getExpressionType().contains("function");
+  }
+
+  public static boolean isRationalOperator(String symbol) {
+    OperatorEnum operator = getOperator(symbol);
+    return operator != null && operator.getExpressionType().contains("rational");
   }
 }

@@ -1,15 +1,10 @@
 package expression;
 
 import expression.operator.OperatorEnum;
-import expression.tree.TreeNode;
-
-import java.util.Iterator;
-
 
 public class ArithmeticExpression implements IExpression {
 
-
-    private TreeNode<String> tree;
+    private String expression;
 
     public ArithmeticExpression() {}
 
@@ -17,23 +12,14 @@ public class ArithmeticExpression implements IExpression {
         return "arith";
     }
 
-    public void buildTree(String exp) {
-        this.tree = new TreeNode<>(exp);
+    public String getExpression() {
+        return expression;
+    }
+
+    public void setExpression(String expression) {
+        this.expression = expression;
     }
 
     public void save(String fileName) {
-
-    }
-
-    public String getString() {
-        StringBuilder treeStr = new StringBuilder();
-        Iterator<TreeNode<String>> iterator = this.tree.iterator();
-        while (iterator.hasNext()) {
-            treeStr.append(iterator.next().getData());
-            if (iterator.hasNext()) {
-                treeStr.append(" ");
-            }
-        }
-        return treeStr.toString();
     }
 }

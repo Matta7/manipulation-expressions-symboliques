@@ -5,22 +5,24 @@ import expression.operator.OperatorEnum;
 
 public class FunctionExpression implements IExpression {
 
-  public FunctionExpression() {
-  }
+  private String expression;
+
+  private boolean hasVariable;
+
+  public FunctionExpression() {}
 
   public String getToken() {
-    return "func";
+      return "function";
   }
 
-  public void buildTree(String exp) {
+  public String getExpression() {
+      return expression;
+  }
 
+  public void setExpression(String expression) {
+      this.expression = expression;
   }
 
   public void save(String fileName) {
-  }
-
-  @Override
-  public String getString() {
-    return "";
   }
 }

@@ -6,6 +6,8 @@ public class XMLToExpressionAdapter implements IExpression {
 
     private String token;
 
+    private String expression;
+
     public XMLToExpressionAdapter() {}
 
     public String getToken() {
@@ -26,10 +28,5 @@ public class XMLToExpressionAdapter implements IExpression {
 
     public void save(String fileName) {
 
-    }
-
-    @Override
-    public String getString() {
-        return "";
     }
 }
