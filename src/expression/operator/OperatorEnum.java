@@ -42,7 +42,7 @@ public enum OperatorEnum {
 
   public static OperatorEnum getOperator(String symbol) {
     for (OperatorEnum operator : OperatorEnum.values()) {
-      if (operator.getSymbol() == symbol) {
+      if (operator.getSymbol().equals(symbol)) {
         return operator;
       }
     }

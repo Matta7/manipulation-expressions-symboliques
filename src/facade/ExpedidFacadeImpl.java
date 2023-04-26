@@ -1,5 +1,6 @@
 package facade;
 
+import expression.type.Type;
 import xml.XMLManager;
 import expression.ArithmeticExpression;
 import expression.IExpression;
@@ -130,7 +131,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
             stack.push(expression);
         }
         // Même chose que pour les expressions arithmétiques, à l'exception qu'on laisse passer la variable "x"
-        else if (actualType.equals("func")) {
+        else if (actualType.equals("function")) {
             if (command.matches("x")) {
                 IExpression expression = getNewExpression();
                 expression.setExpression(command);
@@ -147,7 +148,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
             }
         }
         // Pour les expressions rationnelles, on vérifie que l'élément est soit un caractère alphabétique minuscule ou 1.
-        else if (actualType.equals("rat")) {
+        else if (actualType.equals(Type.RATIONAL)) {
             if (command.matches("[a-z]|1")) {
                 IExpression expression = getNewExpression();
                 expression.setExpression(command);
@@ -164,15 +165,15 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         IExpressionFactory factory = ExpressionFactory.getInstance();
 
         switch (actualType) {
-            case "arith" -> {
+            case Type.ARITHMETIC -> {
                 return factory.makeArithmetic();
             }
 
-            case "func" -> {
+            case Type.FUNCTION -> {
                 return factory.makeFunction();
             }
 
-            case "rat" -> {
+            case (Type.RATIONAL) -> {
                 return factory.makeRational();
             }
 
@@ -187,6 +188,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         for (IExpression expression : stack) {
             stackIndex-=1;
             stackStr.append(stackIndex)
+                    .append(" : ")
                     .append(expression.toString())
                     .append("\n");
         }
@@ -207,13 +209,13 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         }
         //On ajoute le type actuel et on retourne le nom des 3 types d'expressions
         result += "Type actuel : " + actualType + "\n";
-        result += "Types disponibles : arith, rat, func\n";
+        result += "Types disponibles : arith, function, rational\n";
 
         return result;
     }
 
     public void type(String type) throws IllegalArgumentException {
-        if (type.equals("arith") || type.equals("rat") || type.equals("func")) {
+        if (type.equals("arith") || type.equals("function") || type.equals("rational")) {
             actualType = type;
         } else {
             throw new IllegalArgumentException("Type inconnu");
@@ -250,8 +252,6 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         }
 
         IExpression expression = XMLManager.load(fileName);
-
-        //XMLToExpressionAdapter adapter = new XMLToExpressionAdapter(fileName);
 
         //On ajoute l'expression à la pile
         stack.push(expression);

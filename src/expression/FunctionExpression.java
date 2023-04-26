@@ -2,27 +2,38 @@ package expression;
 
 import java.util.Stack;
 import expression.operator.OperatorEnum;
+import expression.type.Type;
 
 public class FunctionExpression implements IExpression {
 
-  private String expression;
+    private String expression;
 
-  private boolean hasVariable;
+    private boolean hasVariable;
 
-  public FunctionExpression() {}
+    public FunctionExpression() {}
 
-  public String getToken() {
-      return "function";
-  }
+    public String getToken() {
+      return Type.FUNCTION;
+    }
 
-  public String getExpression() {
+    public String getExpression() {
       return expression;
-  }
+    }
 
-  public void setExpression(String expression) {
+    public void setExpression(String expression) {
       this.expression = expression;
-  }
+    }
 
-  public void save(String fileName) {
-  }
+    public void save(String fileName) {
+    }
+
+    public String toString() {
+        StringBuilder strExp = new StringBuilder();
+        strExp.append("[")
+                .append(getToken())
+                .append("] ")
+                .append(getExpression());
+
+        return strExp.toString();
+    }
 }

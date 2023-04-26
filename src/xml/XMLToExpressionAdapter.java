@@ -14,16 +14,22 @@ public class XMLToExpressionAdapter implements IExpression {
         return token;
     }
 
+    @Override
+    public String getExpression() {
+        return null;
+    }
+
+    @Override
+    public void setExpression(String expression) {
+
+    }
+
     public void setToken(String token) {
-        if (token.equals("arith") || token.equals("rat") || token.equals("func")) {
+        if (token.equals("arith") || token.equals("rational") || token.equals("functional")) {
             this.token = token;
         } else {
             throw new IllegalArgumentException("Type inconnu");
         }
-    }
-
-    public void buildTree(String exp) {
-
     }
 
     public void save(String fileName) {

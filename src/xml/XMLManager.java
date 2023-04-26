@@ -4,6 +4,7 @@ import expression.IExpression;
 import factory.ExpressionFactory;
 import org.w3c.dom.Document;
 
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.util.Map;
