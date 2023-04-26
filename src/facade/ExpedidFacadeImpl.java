@@ -2,7 +2,6 @@ package facade;
 
 import expression.type.Type;
 import xml.XMLManager;
-import expression.ArithmeticExpression;
 import expression.IExpression;
 import expression.operator.OperatorEnum;
 import factory.ExpressionFactory;
@@ -40,12 +39,14 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                 } else if (separetedCommand.length == 2) {
                     try {
                         this.type(separetedCommand[1]);
-                        return ("Switched to " + separetedCommand[1] + " type.");
+                        System.out.println("Switched to " + separetedCommand[1] + " type.");
+                        return showStack();
                     } catch (IllegalArgumentException e) {
                         return e.getMessage();
                     }
                 } else {
-                    return "Wrong number of argument.";
+                    System.out.println("Wrong number of argument.");
+                    return showStack();
                 }
             }
 
@@ -55,10 +56,12 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                         this.save(separetedCommand[1]);
                         return "Successfully saved file.";
                     } catch (IllegalArgumentException | IllegalStateException e) {
-                        return e.getMessage();
+                        System.out.println(e.getMessage());
+                        return showStack();
                     }
                 } else {
-                    return "Wrong number of argument.";
+                    System.out.println("Wrong number of argument.");
+                    return showStack();
                 }
             }
 
@@ -66,38 +69,42 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                 if (separetedCommand.length == 2) {
                     try {
                         this.load(separetedCommand[1]);
-                        return "Successfully loaded file.";
+                        return showStack();
                     } catch (IllegalArgumentException e) {
-                        return e.getMessage();
+                        System.out.println(e.getMessage());
+                        return showStack();
                     }
                 } else {
-                    return "Wrong number of argument.";
+                    System.out.println("Wrong number of argument.");
+                    return showStack();
                 }
             }
         }
 
         if (command.startsWith("!")) {
-            return "Unknown command \"" + command.split(" ")[0] + "\"";
+            System.out.println("Unknown command \"" + command.split(" ")[0] + "\"");
+            return showStack();
         }
 
         if (separetedCommand.length != 1) {
-            return "Wrong number of argument.";
+            System.out.println("Wrong number of argument.");
+            return showStack();
         }
 
         // On suppose qu'on doit ajouter un élément à la pile.
         
         // On vérifie si l'élément est un opérateur
-        if (OperatorEnum.isOperator(command)) {
+        if (OperatorEnum.isOperator(command, actualType)) {
             // Si c'est le cas, on vérifie qu'il est valide avec le type actuel d'expression manipulée
-            if (OperatorEnum.getOperator(command).getExpressionType().contains(actualType)) {
+            if (OperatorEnum.getOperator(command, actualType).getExpressionType().contains(actualType)) {
                 // Si c'est le cas, on vérifie qu'il y a assez d'éléments dans la pile pour appliquer l'opérateur
-                if (OperatorEnum.getOperator(command).getArity() <= stack.size()) {
+                if (OperatorEnum.getOperator(command, actualType).getArity() <= stack.size()) {
                     // Si c'est le cas, on applique l'opérateur
                     try {
                         IExpression expression = getNewExpression();
                         // On construit l'expression fraichement créée avec les éléments de la pile
                         String res = "";
-                        if (OperatorEnum.getOperator(command).getArity() == 2) {
+                        if (OperatorEnum.getOperator(command, actualType).getArity() == 2) {
                             IExpression expression2 = stack.pop();
                             IExpression expression1 = stack.pop();
                             res = expression1.getExpression() + " " + expression2.getExpression() + " " + command;
@@ -108,30 +115,30 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                         expression.setExpression(res);
                         stack.push(expression);
                     } catch (IllegalArgumentException e) {
-                        return e.getMessage();
+                        System.out.println(e.getMessage());
                     }
                 } else {
-                    return "Not enough elements in stack to apply operator \"" + command + "\".";
+                    System.out.println("Not enough elements in stack to apply operator \"" + command + "\".");
                 }
             } else {
-                return "Operator \"" + command + "\" is not valid for " + actualType + " expressions.";
+                System.out.println("Operator \"" + command + "\" is not valid for " + actualType + " expressions.");
             }
         }
         // Sinon, on vérifie si l'élément est valide pour le type d'expression actuel.
         // Dans le cas d'expressions arithmétiques, on vérifie que l'élément est un nombre, au regard du type Double.
-        else if (actualType.equals("arith")) {
+        else if (actualType.equals(Type.ARITHMETIC)) {
             try {
                 Double.parseDouble(command);
+                // Si c'est le cas, on crée une nouvelle expression arithmétique avec l'élément
+                IExpression expression = getNewExpression();
+                expression.setExpression(command);
+                stack.push(expression);
             } catch (NumberFormatException e) {
-                return "Invalid number \"" + command + "\".";
+                System.out.println("Invalid number \"" + command + "\".");
             }
-            // Si c'est le cas, on crée une nouvelle expression arithmétique avec l'élément
-            IExpression expression = getNewExpression();
-            expression.setExpression(command);
-            stack.push(expression);
         }
         // Même chose que pour les expressions arithmétiques, à l'exception qu'on laisse passer la variable "x"
-        else if (actualType.equals("function")) {
+        else if (actualType.equals(Type.FUNCTION)) {
             if (command.matches("x")) {
                 IExpression expression = getNewExpression();
                 expression.setExpression(command);
@@ -139,12 +146,12 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
             } else {
                 try {
                     Double.parseDouble(command);
+                    IExpression expression = getNewExpression();
+                    expression.setExpression(command);
+                    stack.push(expression);
                 } catch (NumberFormatException e) {
-                    return "Invalid number \"" + command + "\".";
+                    System.out.println("Invalid number \"" + command + "\".");
                 }
-                IExpression expression = getNewExpression();
-                expression.setExpression(command);
-                stack.push(expression);
             }
         }
         // Pour les expressions rationnelles, on vérifie que l'élément est soit un caractère alphabétique minuscule ou 1.
@@ -154,7 +161,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                 expression.setExpression(command);
                 stack.push(expression);
             } else {
-                return "Invalid number \"" + command + "\".";
+                System.out.println("Invalid number \"" + command + "\".");
             }
         }
 
@@ -202,20 +209,20 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         //le symbole, le nom, le type d'expression auquel il s'applique et
         //son arité.
         for (OperatorEnum operator : OperatorEnum.values()) {
-            result +="\"" + operator.getSymbol() + "\"" 
-            + " " + operator.name() 
+            result +="\"" + operator.getSymbol() + "\""
+            + " " + operator.name()
             + " " + operator.getExpressionType().toString()
             + " " + operator.getArity() + "\n";
         }
         //On ajoute le type actuel et on retourne le nom des 3 types d'expressions
         result += "Type actuel : " + actualType + "\n";
-        result += "Types disponibles : arith, function, rational\n";
+        result += "Types disponibles : " + Type.ARITHMETIC + ", " + Type.FUNCTION + ", " + Type.RATIONAL +"\n";
 
         return result;
     }
 
     public void type(String type) throws IllegalArgumentException {
-        if (type.equals("arith") || type.equals("function") || type.equals("rational")) {
+        if (type.equals(Type.ARITHMETIC) || type.equals(Type.FUNCTION) || type.equals(Type.RATIONAL)) {
             actualType = type;
         } else {
             throw new IllegalArgumentException("Type inconnu");

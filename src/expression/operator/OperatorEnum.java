@@ -1,70 +1,66 @@
 package expression.operator;
 
-import expression.IExpression;
-import expression.ArithmeticExpression;
-import expression.FunctionExpression;
-import expression.RationalExpression;
+import expression.type.Type;
 
 import java.util.Set;
 
 public enum OperatorEnum {
-  ADDITION("+", Set.of("arith", "function"), 2),
-  SOUSTRACTION("-", Set.of("arith", "function"), 2),
-  MULTIPLICATION("*", Set.of("arith", "function"), 2),
-  DIVISION("/", Set.of("arith", "function"), 2),
-  NEGATION("~", Set.of("arith", "function"), 1),
-  UNION("+", Set.of("rational"), 2),
-  CONCATENATION(".", Set.of("rational"), 2),
-  ETOILE("*", Set.of("rational"), 1);
-  //NEUTRAL("$", null, 1);
+    ADDITION("+", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
+    SOUSTRACTION("-", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
+    MULTIPLICATION("*", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
+    DIVISION("/", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
+    NEGATION("~", Set.of(Type.ARITHMETIC, Type.FUNCTION), 1),
+    UNION("+", Set.of(Type.RATIONAL), 2),
+    CONCATENATION(".", Set.of(Type.RATIONAL), 2),
+    ETOILE("*", Set.of(Type.RATIONAL), 1);
+    //NEUTRAL("$", null, 1);
 
-  private final String symbol;
-  private final Set<String> expressionType;
-  private final int arity;
+    private final String symbol;
+    private final Set<String> expressionType;
+    private final int arity;
 
-  OperatorEnum(String symbol, Set<String> expressionType, int arity) {
-    this.symbol = symbol;
-    this.expressionType = expressionType;
-    this.arity = arity;
-  }
-
-  public String getSymbol() {
-    return symbol;
-  }
-
-  public Set<String> getExpressionType() {
-    return expressionType;
-  }
-
-  public int getArity() {
-    return arity;
-  }
-
-  public static OperatorEnum getOperator(String symbol) {
-    for (OperatorEnum operator : OperatorEnum.values()) {
-      if (operator.getSymbol().equals(symbol)) {
-        return operator;
-      }
+    OperatorEnum(String symbol, Set<String> expressionType, int arity) {
+        this.symbol = symbol;
+        this.expressionType = expressionType;
+        this.arity = arity;
     }
-    return null;
-  }
 
-  public static boolean isOperator(String symbol) {
-    return getOperator(symbol) != null;
-  }
+    public String getSymbol() {
+        return symbol;
+    }
 
-  public static boolean isArithmeticOperator(String symbol) {
-    OperatorEnum operator = getOperator(symbol);
-    return operator != null && operator.getExpressionType().contains("arith");
-  }
+    public Set<String> getExpressionType() {
+        return expressionType;
+    }
 
-  public static boolean isFunctionOperator(String symbol) {
-    OperatorEnum operator = getOperator(symbol);
-    return operator != null && operator.getExpressionType().contains("function");
-  }
+    public int getArity() {
+        return arity;
+    }
+    public static OperatorEnum getOperator(String symbol, String type) {
+        for (OperatorEnum operator : OperatorEnum.values()) {
+            if (operator.getSymbol().equals(symbol) && operator.getExpressionType().contains(type)) {
+                return operator;
+            }
+        }
+        return null;
+    }
 
-  public static boolean isRationalOperator(String symbol) {
-    OperatorEnum operator = getOperator(symbol);
-    return operator != null && operator.getExpressionType().contains("rational");
-  }
+    public static boolean isOperator(String symbol, String type) {
+        return getOperator(symbol, type) != null;
+    }
+
+    public static boolean isArithmeticOperator(String symbol) {
+        OperatorEnum operator = getOperator(symbol, Type.ARITHMETIC);
+        return operator != null;
+    }
+
+    public static boolean isFunctionOperator(String symbol) {
+        OperatorEnum operator = getOperator(symbol, Type.FUNCTION);
+        return operator != null;
+    }
+
+    public static boolean isRationalOperator(String symbol) {
+        OperatorEnum operator = getOperator(symbol, Type.RATIONAL);
+        return operator != null;
+    }
 }

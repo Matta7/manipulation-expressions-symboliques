@@ -8,8 +8,6 @@ public class FunctionExpression implements IExpression {
 
     private String expression;
 
-    private boolean hasVariable;
-
     public FunctionExpression() {}
 
     public String getToken() {
