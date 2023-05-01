@@ -1,7 +1,5 @@
 package expression;
 
-import java.util.Stack;
-import expression.operator.OperatorEnum;
 import expression.type.Type;
 
 public class FunctionExpression implements IExpression {

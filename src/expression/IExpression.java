@@ -1,7 +1,5 @@
 package expression;
 
-import java.util.Stack;
-
 public interface IExpression {
 
   //Retourne l'identifieur du type d'expression

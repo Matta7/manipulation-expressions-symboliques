@@ -1,6 +1,5 @@
 package expression;
 
-import expression.operator.OperatorEnum;
 import expression.type.Type;
 
 public class ArithmeticExpression implements IExpression {
