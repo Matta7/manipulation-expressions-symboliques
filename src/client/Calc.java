@@ -1,10 +1,6 @@
 package client;
 
-import expression.ArithmeticExpression;
 import expression.ExpressionEvaluator;
-import expression.FunctionExpression;
-import expression.IExpression;
-import handler.ExpressionStackHandler;
 import xml.XMLManager;
 
 public class Calc {

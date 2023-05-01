@@ -36,7 +36,7 @@ public class ExpressionEvaluator {
         return result;
     }
 
-    private String calculateExpression(IExpression expression) {
+    private String calculateExpression(IExpression expression) throws IllegalArgumentException {
         // On calcule le résultat de l'expression, il s'agit une chaine de caractères contenant des nombres sous forme de chaine de caractères,
         // qui peuvent être convertis en nombres réels, grace a Double.parseDouble (voir ci-dessous) et de symboles d'opérateurs.
 
@@ -80,6 +80,11 @@ public class ExpressionEvaluator {
             }
         }
         // On retourne le dernier élément de la pile, qui est le résultat de l'expression.
+
+        // On s'assure que la pile ne contient qu'un seul élément, qui est le résultat de l'expression.
+        if (stack.size() != 1) {
+          throw new IllegalArgumentException("Expression invalide");
+        }
         return stack.pop();
     }
 
@@ -109,16 +114,17 @@ public class ExpressionEvaluator {
         stack.push(true);
       } else {
         // Si l'élément n'est pas un opérateur, on l'empile.
-        if (expressionArray[i].equals("1")) {
-          stack.push(true);
-        } else {
-          stack.push(false);
-        }
+        stack.push(expressionArray[i].equals("1"));
       }
     }
 
     // On retourne le dernier élément de la pile, qui est le résultat de l'expression.
-    return stack.peek();
+    // On s'assure que la pile ne contienne qu'un seul élément.
+    if (stack.size() != 1) {
+      throw new IllegalArgumentException("Expression invalide");
+    }
+
+    return stack.pop();
   }
 
 }
