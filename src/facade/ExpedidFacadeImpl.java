@@ -126,10 +126,6 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         } catch (EmptyStackException e) {
             throw new IllegalStateException("La pile est vide");
         }
-        //On vérifie que le fichier se termine en ".xml" et que celui-ci n'est pas null
-        if (fileName == null || !fileName.endsWith(".xml")) {
-            throw new IllegalArgumentException("Le nom du fichier est incorrect");
-        }
 
         //On récupère le sommet de la pile sans le pop
         IExpression expression = handler.getPeekExpression();
@@ -138,16 +134,6 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
     }
 
     public void load(String fileName) throws IllegalArgumentException {
-        //On vérifie que le fichier se termine en ".xml" et que celui-ci n'est pas null
-        if (fileName == null || !fileName.endsWith(".xml")) {
-            throw new IllegalArgumentException("Le nom du fichier est incorrect");
-        }
-        //On vérifie que le fichier existe pour l'ouvrir
-        File file = new File(fileName);
-        if (!file.exists()) {
-            throw new IllegalArgumentException("Le fichier n'existe pas");
-        }
-
         IExpression expression = XMLManager.load(fileName);
 
         //On ajoute l'expression à la pile

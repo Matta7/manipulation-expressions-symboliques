@@ -13,27 +13,44 @@ public class ExpressionEvaluator {
         return instance;
     }
 
-    public String evaluate(IExpression expression, String xValue) {
-        String result = "";
+    public String evaluate(IExpression expression) {
         if (expression.getToken().equals(Type.ARITHMETIC)) {
-            result = calculateExpression(expression);
+            return calculateExpression(expression);
+        } else if (expression.getToken().equals(Type.FUNCTION)) {
+            // Si "x" est dans l'expression, alors on vérifie que xValue ne soit pas null et on remplace toutes les occurences de "x" par xValue.
+            if (expression.getExpression().contains("x")) {
+                return "Invalid command, could not replace x, xValue is null";
+            } else {
+                return calculateExpression(expression);
+            }
+        } else if (expression.getToken().equals(Type.RATIONAL)) {
+            return "Invalid expression, cannot evaluate rational expressions";
+        } else {
+            return "Unknown file type.";
+        }
+    }
+
+    public String evaluate(IExpression expression, String xValue) {
+        if (expression.getToken().equals(Type.ARITHMETIC)) {
+            return "Wrong number of argument.";
         } else if (expression.getToken().equals(Type.FUNCTION)) {
             // Si "x" est dans l'expression, alors on vérifie que xValue ne soit pas null et on remplace toutes les occurences de "x" par xValue.
             if (expression.getExpression().contains("x")) {
                 if (xValue != null) {
                     IExpression calculableExpression = new ArithmeticExpression();
                     calculableExpression.setExpression(expression.getExpression().replaceAll("x", xValue));
-                    result = calculateExpression(calculableExpression);
+                    return calculateExpression(calculableExpression);
                 } else {
-                    result = "Invalid command, could not replace x, xValue is null";
+                    return "Invalid command, could not replace x, x is null";
                 }
             } else {
-                result = calculateExpression(expression);
+                return calculateExpression(expression);
             }
-        } else if (expression.getToken().equals("rational")) {
-            result = "Invalid expression, cannot evaluate rational expressions";
+        } else if (expression.getToken().equals(Type.RATIONAL)) {
+            return "Invalid expression, cannot evaluate rational expressions";
+        } else {
+            return "Unknown file type.";
         }
-        return result;
     }
 
     private String calculateExpression(IExpression expression) throws IllegalArgumentException {
@@ -47,35 +64,34 @@ public class ExpressionEvaluator {
         // On sépare l'expression en un tableau de String, en utilisant l'espace comme séparateur.
         String[] expressionArray = expression.getExpression().split(" ");
         // On parcourt le tableau de String.
-        for (int i = 0; i < expressionArray.length; i++) {
+        for (String symbol : expressionArray) {
             // Si l'élément est un opérateur, on le dépile, on dépile les deux opérandes précédentes, on les convertit en nombres réels, on applique l'opérateur et on empile le résultat.
-            switch (expressionArray[i]) {
+            switch (symbol) {
                 case "+" -> {
-                    Double operand2 = Double.parseDouble(stack.pop());
-                    Double operand1 = Double.parseDouble(stack.pop());
+                    double operand2 = Double.parseDouble(stack.pop());
+                    double operand1 = Double.parseDouble(stack.pop());
                     stack.push(Double.toString(operand1 + operand2));
                 }
                 case "-" -> {
-                    Double operand2 = Double.parseDouble(stack.pop());
-                    Double operand1 = Double.parseDouble(stack.pop());
+                    double operand2 = Double.parseDouble(stack.pop());
+                    double operand1 = Double.parseDouble(stack.pop());
                     stack.push(Double.toString(operand1 - operand2));
                 }
                 case "*" -> {
-                    Double operand2 = Double.parseDouble(stack.pop());
-                    Double operand1 = Double.parseDouble(stack.pop());
+                    double operand2 = Double.parseDouble(stack.pop());
+                    double operand1 = Double.parseDouble(stack.pop());
                     stack.push(Double.toString(operand1 * operand2));
                 }
                 case "/" -> {
-                    Double operand2 = Double.parseDouble(stack.pop());
-                    Double operand1 = Double.parseDouble(stack.pop());
+                    double operand2 = Double.parseDouble(stack.pop());
+                    double operand1 = Double.parseDouble(stack.pop());
                     stack.push(Double.toString(operand1 / operand2));
                 }
                 case "~" -> {
-                    Double operand = Double.parseDouble(stack.pop());
+                    double operand = Double.parseDouble(stack.pop());
                     stack.push(Double.toString(-operand));
                 }
-                default ->
-                    stack.push(expressionArray[i]);
+                default -> stack.push(symbol);
                 // Si l'élément n'est pas un opérateur, on l'empile.
             }
         }
@@ -88,35 +104,39 @@ public class ExpressionEvaluator {
         return stack.pop();
     }
 
-  public Boolean isNullable(IExpression expression) throws IllegalArgumentException {
-    if (!expression.getToken().equals("rational")) {
+    public Boolean isNullable(IExpression expression) throws IllegalArgumentException {
+    if (!expression.getToken().equals(Type.RATIONAL)) {
       throw new IllegalArgumentException("Type d'expression non supporté");
     }
     // On vérifie si l'expression est nullable, c'est à dire si elle reconnaît le mot vide.
     // On utilise une pile pour stocker les opérandes et les opérateurs.
-    Stack<Boolean> stack = new Stack<Boolean>();
+    Stack<Boolean> stack = new Stack<>();
     // On sépare l'expression en un tableau de String, en utilisant l'espace comme séparateur.
     String[] expressionArray = expression.getExpression().split(" ");
     // On parcourt le tableau de String.
-    for (int i = 0; i < expressionArray.length; i++) {
-      // Si l'élément est un opérateur, on le dépile, on dépile les deux opérandes précédentes, on applique l'opérateur et on empile le résultat.
-      if (expressionArray[i].equals("+")) {
-        Boolean operand2 = stack.pop();
-        Boolean operand1 = stack.pop();
-        stack.push(operand1 || operand2);
-      } else if (expressionArray[i].equals(".")) {
-        Boolean operand2 = stack.pop();
-        Boolean operand1 = stack.pop();
-        stack.push(operand1 && operand2);
-      } else if (expressionArray[i].equals("*")) {
-        // Peu importe la valeur de l'opérande, si on le passe à l'étoile de Kleene, on reconnaitra le mot vide.
-        stack.pop();
-        stack.push(true);
-      } else {
-        // Si l'élément n'est pas un opérateur, on l'empile.
-        stack.push(expressionArray[i].equals("1"));
-      }
-    }
+        for (String symbol : expressionArray) {
+            // Si l'élément est un opérateur, on le dépile, on dépile les deux opérandes précédentes, on applique l'opérateur et on empile le résultat.
+            switch (symbol) {
+                case "+" -> {
+                    boolean operand2 = stack.pop();
+                    boolean operand1 = stack.pop();
+                    stack.push(operand1 || operand2);
+                }
+                case "." -> {
+                    boolean operand2 = stack.pop();
+                    boolean operand1 = stack.pop();
+                    stack.push(operand1 && operand2);
+                }
+                case "*" -> {
+                    // Peu importe la valeur de l'opérande, si on le passe à l'étoile de Kleene, on reconnaitra le mot vide.
+                    stack.pop();
+                    stack.push(true);
+                }
+                default ->
+                    // Si l'élément n'est pas un opérateur, on l'empile.
+                        stack.push(symbol.equals("1"));
+            }
+        }
 
     // On retourne le dernier élément de la pile, qui est le résultat de l'expression.
     // On s'assure que la pile ne contienne qu'un seul élément.
@@ -125,6 +145,5 @@ public class ExpressionEvaluator {
     }
 
     return stack.pop();
-  }
-
+    }
 }
