@@ -74,4 +74,42 @@ public class ExpressionEvaluator {
     // On retourne le dernier élément de la pile, qui est le résultat de l'expression.
     return stack.pop();
   }
+
+  public Boolean isNullable(IExpression expression) throws IllegalArgumentException {
+    if (!expression.getToken().equals("rational")) {
+      throw new IllegalArgumentException("Type d'expression non supporté");
+    }
+    // On vérifie si l'expression est nullable, c'est à dire si elle reconnaît le mot vide.
+    // On utilise une pile pour stocker les opérandes et les opérateurs.
+    Stack<Boolean> stack = new Stack<Boolean>();
+    // On sépare l'expression en un tableau de String, en utilisant l'espace comme séparateur.
+    String[] expressionArray = expression.getExpression().split(" ");
+    // On parcourt le tableau de String.
+    for (int i = 0; i < expressionArray.length; i++) {
+      // Si l'élément est un opérateur, on le dépile, on dépile les deux opérandes précédentes, on applique l'opérateur et on empile le résultat.
+      if (expressionArray[i].equals("+")) {
+        Boolean operand2 = stack.pop();
+        Boolean operand1 = stack.pop();
+        stack.push(operand1 || operand2);
+      } else if (expressionArray[i].equals(".")) {
+        Boolean operand2 = stack.pop();
+        Boolean operand1 = stack.pop();
+        stack.push(operand1 && operand2);
+      } else if (expressionArray[i].equals("*")) {
+        // Peu importe la valeur de l'opérande, si on le passe à l'étoile de Kleene, on reconnaitra le mot vide.
+        stack.pop();
+        stack.push(true);
+      } else {
+        // Si l'élément n'est pas un opérateur, on l'empile.
+        if (expressionArray[i].equals("1")) {
+          stack.push(true);
+        } else {
+          stack.push(false);
+        }
+      }
+    }
+
+    // On retourne le dernier élément de la pile, qui est le résultat de l'expression.
+    return stack.peek();
+  }
 }
