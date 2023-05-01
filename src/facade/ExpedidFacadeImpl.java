@@ -4,18 +4,14 @@ import expression.type.Type;
 import xml.XMLManager;
 import expression.IExpression;
 import expression.operator.OperatorEnum;
-import factory.ExpressionFactory;
-import factory.IExpressionFactory;
+import handler.ExpressionStackHandler;
 
 import java.io.File;
 import java.util.EmptyStackException;
-import java.util.Stack;
 
 public class ExpedidFacadeImpl implements IExpedidFacade {
     //Attributs
-    private Stack<IExpression> stack = new Stack<>();
-    private String actualType = "";
-
+    private ExpressionStackHandler handler = ExpressionStackHandler.getInstance();
 
     private static ExpedidFacadeImpl expedidFacade = new ExpedidFacadeImpl();
 
@@ -40,13 +36,13 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                     try {
                         this.type(separetedCommand[1]);
                         System.out.println("Switched to " + separetedCommand[1] + " type.");
-                        return showStack();
+                        return handler.showStack();
                     } catch (IllegalArgumentException e) {
                         return e.getMessage();
                     }
                 } else {
                     System.out.println("Wrong number of argument.");
-                    return showStack();
+                    return handler.showStack();
                 }
             }
 
@@ -57,11 +53,11 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                         return "Successfully saved file.";
                     } catch (IllegalArgumentException | IllegalStateException e) {
                         System.out.println(e.getMessage());
-                        return showStack();
+                        return handler.showStack();
                     }
                 } else {
                     System.out.println("Wrong number of argument.");
-                    return showStack();
+                    return handler.showStack();
                 }
             }
 
@@ -69,138 +65,32 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                 if (separetedCommand.length == 2) {
                     try {
                         this.load(separetedCommand[1]);
-                        return showStack();
+                        return handler.showStack();
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
-                        return showStack();
+                        return handler.showStack();
                     }
                 } else {
                     System.out.println("Wrong number of argument.");
-                    return showStack();
+                    return handler.showStack();
                 }
             }
         }
 
         if (command.startsWith("!")) {
             System.out.println("Unknown command \"" + command.split(" ")[0] + "\"");
-            return showStack();
+            return handler.showStack();
         }
 
         if (separetedCommand.length != 1) {
             System.out.println("Wrong number of argument.");
-            return showStack();
+            return handler.showStack();
         }
 
         // On suppose qu'on doit ajouter un élément à la pile.
-        
-        // On vérifie si l'élément est un opérateur
-        if (OperatorEnum.isOperator(command, actualType)) {
-            // Si c'est le cas, on vérifie qu'il est valide avec le type actuel d'expression manipulée
-            if (OperatorEnum.getOperator(command, actualType).getExpressionType().contains(actualType)) {
-                // Si c'est le cas, on vérifie qu'il y a assez d'éléments dans la pile pour appliquer l'opérateur
-                if (OperatorEnum.getOperator(command, actualType).getArity() <= stack.size()) {
-                    // Si c'est le cas, on applique l'opérateur
-                    try {
-                        IExpression expression = getNewExpression();
-                        // On construit l'expression fraichement créée avec les éléments de la pile
-                        String res = "";
-                        if (OperatorEnum.getOperator(command, actualType).getArity() == 2) {
-                            IExpression expression2 = stack.pop();
-                            IExpression expression1 = stack.pop();
-                            res = expression1.getExpression() + " " + expression2.getExpression() + " " + command;
-                        } else {
-                            IExpression expression1 = stack.pop();
-                            res = expression1.getExpression() + " " + command;
-                        }
-                        expression.setExpression(res);
-                        stack.push(expression);
-                    } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
-                    }
-                } else {
-                    System.out.println("Not enough elements in stack to apply operator \"" + command + "\".");
-                }
-            } else {
-                System.out.println("Operator \"" + command + "\" is not valid for " + actualType + " expressions.");
-            }
-        }
-        // Sinon, on vérifie si l'élément est valide pour le type d'expression actuel.
-        // Dans le cas d'expressions arithmétiques, on vérifie que l'élément est un nombre, au regard du type Double.
-        else if (actualType.equals(Type.ARITHMETIC)) {
-            try {
-                Double.parseDouble(command);
-                // Si c'est le cas, on crée une nouvelle expression arithmétique avec l'élément
-                IExpression expression = getNewExpression();
-                expression.setExpression(command);
-                stack.push(expression);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid number \"" + command + "\".");
-            }
-        }
-        // Même chose que pour les expressions arithmétiques, à l'exception qu'on laisse passer la variable "x"
-        else if (actualType.equals(Type.FUNCTION)) {
-            if (command.matches("x")) {
-                IExpression expression = getNewExpression();
-                expression.setExpression(command);
-                stack.push(expression);
-            } else {
-                try {
-                    Double.parseDouble(command);
-                    IExpression expression = getNewExpression();
-                    expression.setExpression(command);
-                    stack.push(expression);
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid number \"" + command + "\".");
-                }
-            }
-        }
-        // Pour les expressions rationnelles, on vérifie que l'élément est soit un caractère alphabétique minuscule ou 1.
-        else if (actualType.equals(Type.RATIONAL)) {
-            if (command.matches("[a-z]|1")) {
-                IExpression expression = getNewExpression();
-                expression.setExpression(command);
-                stack.push(expression);
-            } else {
-                System.out.println("Invalid number \"" + command + "\".");
-            }
-        }
+        handler.handleCommand(command);
 
-        return showStack();
-    }
-
-    private IExpression getNewExpression() throws IllegalArgumentException {
-        IExpressionFactory factory = ExpressionFactory.getInstance();
-
-        switch (actualType) {
-            case Type.ARITHMETIC -> {
-                return factory.makeArithmetic();
-            }
-
-            case Type.FUNCTION -> {
-                return factory.makeFunction();
-            }
-
-            case (Type.RATIONAL) -> {
-                return factory.makeRational();
-            }
-
-            default -> throw new IllegalStateException("No type defined");
-        }
-    }
-
-    private String showStack() {
-        int stackIndex = stack.size();
-        StringBuilder stackStr = new StringBuilder();
-
-        for (IExpression expression : stack) {
-            stackIndex-=1;
-            stackStr.append(stackIndex)
-                    .append(" : ")
-                    .append(expression.toString())
-                    .append("\n");
-        }
-
-        return stackStr.toString();
+        return handler.showStack();
     }
 
     public String type() {
@@ -215,7 +105,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
             + " " + operator.getArity() + "\n";
         }
         //On ajoute le type actuel et on retourne le nom des 3 types d'expressions
-        result += "Type actuel : " + actualType + "\n";
+        result += "Type actuel : " + handler.getActualType() + "\n";
         result += "Types disponibles : " + Type.ARITHMETIC + ", " + Type.FUNCTION + ", " + Type.RATIONAL +"\n";
 
         return result;
@@ -223,7 +113,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
 
     public void type(String type) throws IllegalArgumentException {
         if (type.equals(Type.ARITHMETIC) || type.equals(Type.FUNCTION) || type.equals(Type.RATIONAL)) {
-            actualType = type;
+            handler.setActualType(type);
         } else {
             throw new IllegalArgumentException("Type inconnu");
         }
@@ -232,7 +122,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
     public void save(String fileName) throws IllegalStateException, IllegalArgumentException {
         //On vérifie que la pile n'est pas vide
         try {
-            stack.peek();
+            handler.getPeekExpression();
         } catch (EmptyStackException e) {
             throw new IllegalStateException("La pile est vide");
         }
@@ -242,7 +132,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         }
 
         //On récupère le sommet de la pile sans le pop
-        IExpression expression = stack.peek();
+        IExpression expression = handler.getPeekExpression();
         //On sauvegarde l'expression dans le fichier
         expression.save(fileName);
     }
@@ -261,6 +151,6 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         IExpression expression = XMLManager.load(fileName);
 
         //On ajoute l'expression à la pile
-        stack.push(expression);
+        handler.pushExpression(expression);
     }
 }
