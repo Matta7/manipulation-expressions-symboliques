@@ -13,88 +13,90 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
     //Attributs
     private ExpressionStackHandler handler = ExpressionStackHandler.getInstance();
 
-    private ExpedidView view = new ExpedidView();
+    private ExpedidView view = new ExpedidView(handler);
 
     private static ExpedidFacadeImpl expedidFacade = new ExpedidFacadeImpl();
 
     private ExpedidFacadeImpl() {
         handler.addModelListener(view);
+        view.show("");
     }
 
     public static ExpedidFacadeImpl getInstance() {
         return expedidFacade;
     }
 
-    public String enter(String command) throws IllegalArgumentException, IllegalStateException, NumberFormatException {
+    public void enter(String command) throws IllegalArgumentException, IllegalStateException, NumberFormatException {
         String[] separetedCommand = command.split(" ");
+        boolean isCommand = command.startsWith("!");
 
-        switch (separetedCommand[0]) {
-            case "!quit" -> {
-                System.exit(0);
-            }
+        if (isCommand) {
+            boolean unknownCommand = true;
+            switch (separetedCommand[0]) {
+                case "!quit" -> {
+                    unknownCommand = false;
+                    System.exit(0);
+                }
 
-            case "!type" -> {
-                if (separetedCommand.length == 1) {
-                    return this.type();
-                } else if (separetedCommand.length == 2) {
-                    try {
-                        this.type(separetedCommand[1]);
-                        System.out.println("Switched to " + separetedCommand[1] + " type.");
-                        return handler.showStack();
-                    } catch (IllegalArgumentException e) {
-                        return e.getMessage();
+                case "!type" -> {
+                    unknownCommand = false;
+                    if (separetedCommand.length == 1) {
+                        view.show(this.type());
+                    } else if (separetedCommand.length == 2) {
+                        try {
+                            this.type(separetedCommand[1]);
+                            view.show("Switched to " + separetedCommand[1] + " type.\n");
+                        } catch (Exception e) {
+                            view.show(e.getMessage());
+                        }
+                    } else {
+                        view.show("Wrong number of argument.\n");
                     }
-                } else {
-                    System.out.println("Wrong number of argument.");
-                    return handler.showStack();
+                }
+
+                case "!save" -> {
+                    unknownCommand = false;
+                    if (separetedCommand.length == 2) {
+                        try {
+                            this.save(separetedCommand[1]);
+                            view.show("Successfully saved file.\n");
+                        } catch (Exception e) {
+                            view.show(e.getMessage());
+                        }
+                    } else {
+                        view.show("Wrong number of argument.\n");
+                    }
+                }
+
+                case "!load" -> {
+                    unknownCommand = false;
+                    if (separetedCommand.length == 2) {
+                        try {
+                            this.load(separetedCommand[1]);
+                        } catch (IllegalArgumentException e) {
+                            view.show(e.getMessage());
+                        }
+                    } else {
+                        view.show("Wrong number of argument.\n");
+                    }
                 }
             }
 
-            case "!save" -> {
-                if (separetedCommand.length == 2) {
-                    try {
-                        this.save(separetedCommand[1]);
-                        return "Successfully saved file.";
-                    } catch (IllegalArgumentException | IllegalStateException e) {
-                        System.out.println(e.getMessage());
-                        return handler.showStack();
-                    }
-                } else {
-                    System.out.println("Wrong number of argument.");
-                    return handler.showStack();
-                }
+            if (unknownCommand) {
+                view.show("Unknown command \"" + command.split(" ")[0] + "\".\n");
             }
-
-            case "!load" -> {
-                if (separetedCommand.length == 2) {
-                    try {
-                        this.load(separetedCommand[1]);
-                        return handler.showStack();
-                    } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
-                        return handler.showStack();
-                    }
-                } else {
-                    System.out.println("Wrong number of argument.");
-                    return handler.showStack();
+        } else {
+            if (separetedCommand.length != 1) {
+                view.show("Wrong number of argument.\n");
+            } else {
+                // On doit ajouter un élément à la pile.
+                try {
+                    handler.handleCommand(command);
+                } catch (Exception e) {
+                    view.show(e.getMessage());
                 }
             }
         }
-
-        if (command.startsWith("!")) {
-            System.out.println("Unknown command \"" + command.split(" ")[0] + "\".");
-            return handler.showStack();
-        }
-
-        if (separetedCommand.length != 1) {
-            System.out.println("Wrong number of argument.");
-            return handler.showStack();
-        }
-
-        // On suppose qu'on doit ajouter un élément à la pile.
-        handler.handleCommand(command);
-
-        return handler.showStack();
     }
 
     public String type() {

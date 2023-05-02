@@ -5,18 +5,33 @@ import model.stackhandler.ExpressionStackHandler;
 
 public class ExpedidView implements ModelListener {
 
-    public void showEnterSymbol(ExpressionStackHandler stackHandler) {
+    private ExpressionStackHandler stackHandler;
 
+    public ExpedidView(ExpressionStackHandler stackHandler) {
+        this.stackHandler = stackHandler;
     }
 
-    public void showError(String error) {
+    private void showEditor() {
+        System.out.print("> ");
+    }
 
+    private void showStack() {
+        System.out.println(stackHandler.toString());
+        if (stackHandler.isActualTypeDefined()) {
+            System.out.println("  [" + stackHandler.getActualType() + "]");
+        }
+        this.showEditor();
+    }
+
+    public void show(String str) {
+        System.out.println(str);
+        this.showStack();
     }
 
     @Override
     public void somethingHasChanged(Object source) {
         if (source instanceof ExpressionStackHandler) {
-            showEnterSymbol((ExpressionStackHandler) source);
+            this.showStack();
         }
     }
 }

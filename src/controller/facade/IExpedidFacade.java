@@ -2,7 +2,7 @@ package controller.facade;
 
 public interface IExpedidFacade {
     // Method that interpret the command that the user entered using expedid editor
-    String enter(String command);
+    void enter(String command);
 
     // !type
     String type();

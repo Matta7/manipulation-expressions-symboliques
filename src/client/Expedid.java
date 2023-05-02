@@ -9,16 +9,13 @@ import java.util.Scanner;
 
 public class Expedid {
     public static void main(String[] args) {
-        IExpedidFacade expedid = ExpedidFacadeImpl.getInstance();
         Scanner scanner = new Scanner(System.in);
+        IExpedidFacade expedid = ExpedidFacadeImpl.getInstance();
         String command;
 
         while (true) {
-            System.out.print("> ");
             command = scanner.nextLine();
-            String result = expedid.enter(command);
-
-            System.out.println(result);
+            expedid.enter(command);
         }
     }
 }
