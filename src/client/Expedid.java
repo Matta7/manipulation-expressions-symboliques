@@ -1,10 +1,11 @@
 package client;
 
-import facade.ExpedidFacadeImpl;
-import facade.IExpedidFacade;
+import controller.facade.ExpedidFacadeImpl;
+import controller.facade.IExpedidFacade;
 
-import java.util.Objects;
 import java.util.Scanner;
+
+;
 
 public class Expedid {
     public static void main(String[] args) {
@@ -16,13 +17,8 @@ public class Expedid {
             System.out.print("> ");
             command = scanner.nextLine();
             String result = expedid.enter(command);
-            if (Objects.equals(result, "quit")) {
-                break;
-            } else {
-                System.out.println(result);
-            }
-        }
 
-        scanner.close();
+            System.out.println(result);
+        }
     }
 }

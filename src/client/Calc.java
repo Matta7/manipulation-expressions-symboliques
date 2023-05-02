@@ -1,7 +1,7 @@
 package client;
 
-import facade.CalcFacadeImpl;
-import facade.ICalcFacade;
+import controller.facade.CalcFacadeImpl;
+import controller.facade.ICalcFacade;
 
 public class Calc {
 
@@ -10,9 +10,9 @@ public class Calc {
         ICalcFacade calc = CalcFacadeImpl.getInstance();
         System.out.println(calc.calc(args));
 
-        /*IExpression expression = new FunctionExpression();
-        expression.setExpression("9 x *");
+        /*IExpression model.expression = new FunctionExpression();
+        model.expression.setExpression("9 x *");
         ExpressionEvaluator evaluator = ExpressionEvaluator.getInstance();
-        System.out.println(evaluator.evaluate(expression, ""));*/
+        System.out.println(evaluator.evaluate(model.expression, ""));*/
     }
 }

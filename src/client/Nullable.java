@@ -1,7 +1,7 @@
 package client;
 
-import facade.INullableFacade;
-import facade.NullableFacadeImpl;
+import controller.facade.INullableFacade;
+import controller.facade.NullableFacadeImpl;
 
 public class Nullable {
     public static void main(String[] args) {
@@ -9,9 +9,9 @@ public class Nullable {
         INullableFacade nullable = NullableFacadeImpl.getInstance();
         System.out.println(nullable.nullable(args));
 
-        /*IExpression expression = new RationalExpression();
-        expression.setExpression("a b * .");
+        /*IExpression model.expression = new RationalExpression();
+        model.expression.setExpression("a b * .");
         ExpressionEvaluator evaluator = ExpressionEvaluator.getInstance();
-        System.out.println(evaluator.isNullable(expression));*/
+        System.out.println(evaluator.isNullable(model.expression));*/
     }
 }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/manipulation-expressions-symboliques.iml" filepath="$PROJECT_DIR$/.idea/manipulation-expressions-symboliques.iml" />
+      <module fileurl="file://$PROJECT_DIR$/manipulation-expressions-symboliques.iml" filepath="$PROJECT_DIR$/manipulation-expressions-symboliques.iml" />
     </modules>
   </component>
 </project>
