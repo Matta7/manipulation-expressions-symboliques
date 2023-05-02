@@ -1,12 +1,11 @@
 package xml;
 
-import expression.IExpression;
+import expression.Expression;
+import expression.type.Type;
 
-public class XMLToExpressionAdapter implements IExpression {
+public class XMLToExpressionAdapter extends Expression {
 
     private String token;
-
-    private String expression;
 
     public XMLToExpressionAdapter() {}
 
@@ -14,25 +13,11 @@ public class XMLToExpressionAdapter implements IExpression {
         return token;
     }
 
-    @Override
-    public String getExpression() {
-        return null;
-    }
-
-    @Override
-    public void setExpression(String expression) {
-
-    }
-
     public void setToken(String token) {
-        if (token.equals("arith") || token.equals("rational") || token.equals("functional")) {
+        if (token.equals(Type.ARITHMETIC) || token.equals(Type.FUNCTION) || token.equals(Type.RATIONAL)) {
             this.token = token;
         } else {
-            throw new IllegalArgumentException("Type inconnu");
+            throw new IllegalArgumentException("Unknown type.");
         }
-    }
-
-    public void save(String fileName) {
-
     }
 }

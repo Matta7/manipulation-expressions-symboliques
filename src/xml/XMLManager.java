@@ -20,12 +20,12 @@ public class XMLManager {
 
         //On vérifie que le fichier se termine en ".xml" et que celui-ci n'est pas null
         if (fileName == null || !fileName.endsWith(".xml")) {
-            throw new IllegalArgumentException("Le nom du fichier est incorrect");
+            throw new IllegalArgumentException("File name is invalid.");
         }
         //On vérifie que le fichier existe pour l'ouvrir
         File file = new File(fileName);
         if (!file.exists()) {
-            throw new IllegalArgumentException("Le fichier n'existe pas");
+            throw new IllegalArgumentException("File does not exist.");
         }
 
 
@@ -52,7 +52,7 @@ public class XMLManager {
     public static void save(String fileName, IExpression expression) {
         //On vérifie que le fichier se termine en ".xml" et que celui-ci n'est pas null
         if (fileName == null || !fileName.endsWith(".xml")) {
-            throw new IllegalArgumentException("Le nom du fichier est incorrect");
+            throw new IllegalArgumentException("File name is invalid.");
         }
     }
 

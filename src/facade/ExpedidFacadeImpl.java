@@ -78,7 +78,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         }
 
         if (command.startsWith("!")) {
-            System.out.println("Unknown command \"" + command.split(" ")[0] + "\"");
+            System.out.println("Unknown command \"" + command.split(" ")[0] + "\".");
             return handler.showStack();
         }
 
@@ -115,7 +115,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         if (type.equals(Type.ARITHMETIC) || type.equals(Type.FUNCTION) || type.equals(Type.RATIONAL)) {
             handler.setActualType(type);
         } else {
-            throw new IllegalArgumentException("Type inconnu");
+            throw new IllegalArgumentException("Unknown type.");
         }
     }
 
@@ -124,7 +124,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         try {
             handler.getPeekExpression();
         } catch (EmptyStackException e) {
-            throw new IllegalStateException("La pile est vide");
+            throw new IllegalStateException("Stack is empty.");
         }
 
         //On récupère le sommet de la pile sans le pop

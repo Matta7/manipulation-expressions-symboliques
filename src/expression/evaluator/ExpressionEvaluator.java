@@ -43,7 +43,7 @@ public class ExpressionEvaluator {
                     calculableExpression.setExpression(expression.getExpression().replaceAll("x", xValue));
                     return calculateExpression(calculableExpression);
                 } else {
-                    return "Invalid command, could not replace x, x is null";
+                    return "Invalid argument, x is null";
                 }
             } else {
                 return calculateExpression(expression);
@@ -101,14 +101,14 @@ public class ExpressionEvaluator {
 
         // On s'assure que la pile ne contient qu'un seul élément, qui est le résultat de l'expression.
         if (stack.size() != 1) {
-          throw new IllegalArgumentException("Expression invalide");
+          throw new IllegalArgumentException("Invalid expression.");
         }
         return stack.pop();
     }
 
     public Boolean isNullable(IExpression expression) throws IllegalArgumentException {
     if (!expression.getToken().equals(Type.RATIONAL)) {
-      throw new IllegalArgumentException("Type d'expression non supporté");
+      throw new IllegalArgumentException("Expression type not supported.");
     }
     // On vérifie si l'expression est nullable, c'est à dire si elle reconnaît le mot vide.
     // On utilise une pile pour stocker les opérandes et les opérateurs.
@@ -143,7 +143,7 @@ public class ExpressionEvaluator {
     // On retourne le dernier élément de la pile, qui est le résultat de l'expression.
     // On s'assure que la pile ne contienne qu'un seul élément.
     if (stack.size() != 1) {
-      throw new IllegalArgumentException("Expression invalide");
+      throw new IllegalArgumentException("Invalid expression");
     }
 
     return stack.pop();

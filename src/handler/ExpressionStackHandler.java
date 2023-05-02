@@ -68,7 +68,7 @@ public class ExpressionStackHandler {
                 expression.setExpression(command);
                 stack.push(expression);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid number \"" + command + "\".");
+                System.out.println("Invalid symbol \"" + command + "\".");
             }
         }
         // Même chose que pour les expressions arithmétiques, à l'exception qu'on laisse passer la variable "x"
@@ -84,7 +84,7 @@ public class ExpressionStackHandler {
                     expression.setExpression(command);
                     stack.push(expression);
                 } catch (NumberFormatException e) {
-                    System.out.println("Invalid number \"" + command + "\".");
+                    System.out.println("Invalid symbol \"" + command + "\".");
                 }
             }
         }
@@ -137,7 +137,7 @@ public class ExpressionStackHandler {
                 return factory.makeRational();
             }
 
-            default -> throw new IllegalStateException("No type defined");
+            default -> throw new IllegalStateException("No type defined.");
         }
     }
 
