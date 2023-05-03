@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="expression" type="ExpressionType"/>
+
+  <xs:complexType name="ExpressionType">
+    <xs:sequence>
+      <xs:element name="operation" type="OperationType"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="exprType" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="OperationType">
+    <xs:sequence>
+      <xs:element name="operation" type="OperationType" minOccurs="0" maxOccurs="2"/>
+      <xs:element name="operand" type="xs:string" minOccurs="0" maxOccurs="2"/>
+    </xs:sequence>
+    <xs:attribute name="type" type="opType" use="required"/>
+  </xs:complexType>
+
+  <xs:simpleType name="exprType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="arith"/>
+      <xs:enumeration value="function"/>
+      <xs:enumeration value="rational"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="opType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="+"/>
+      <xs:enumeration value="-"/>
+      <xs:enumeration value="*"/>
+      <xs:enumeration value="/"/>
+      <xs:enumeration value="~"/>
+      <xs:enumeration value="."/>
+      <xs:enumeration value="$"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

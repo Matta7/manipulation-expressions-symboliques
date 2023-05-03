@@ -17,7 +17,7 @@ public class XMLToExpressionAdapter extends Expression {
         if (token.equals(Type.ARITHMETIC) || token.equals(Type.FUNCTION) || token.equals(Type.RATIONAL)) {
             this.token = token;
         } else {
-            throw new IllegalArgumentException("Unknown type.");
+            throw new IllegalArgumentException("Unknown type\n.");
         }
     }
 }

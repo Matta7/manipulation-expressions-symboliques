@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a01f14af-90ab-4955-8b65-e529d43716a6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/xml/FileValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xml/schema/expression.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xml/test.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/addOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/addOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/catOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/catOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/divOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/divOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/kleeneStarOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/kleeneStarOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/minusOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/minusOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/multOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/multOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/negOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/negOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/unionOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/unionOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/ExpressionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/ExpressionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/XMLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xml/DTD.xsd" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2PELn7qMIsMhKER8guuxgs4xqTm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mathi\OneDrive\Bureau\M1\S2\Architecture logiciel\manipulation-expressions-symboliques\xml\schema" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.XMLManager">
+    <configuration name="Expedid" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.Expedid" />
+      <module name="manipulation-expressions-symboliques" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="XMLManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="model.xml.XMLManager" />
+      <module name="manipulation-expressions-symboliques" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.xml.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.XMLManager" />
+        <item itemvalue="Application.Expedid" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a01f14af-90ab-4955-8b65-e529d43716a6" name="Changes" comment="" />
+      <created>1683017462836</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683017462836</updated>
+      <workItem from="1683017464546" duration="196000" />
+      <workItem from="1683018063502" duration="278000" />
+      <workItem from="1683018380740" duration="256000" />
+      <workItem from="1683018658917" duration="388000" />
+      <workItem from="1683019051741" duration="120000" />
+      <workItem from="1683019211092" duration="15920000" />
+      <workItem from="1683104882429" duration="4917000" />
+      <workItem from="1683113981377" duration="4479000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

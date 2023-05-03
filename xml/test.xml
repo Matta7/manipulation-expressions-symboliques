@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<expression type="arith" xmlns:expression="file://schema/expression.xsd">
+    <operation type="+">
+        <operation type="-">
+            <operation type="+">
+                <operand>2</operand>
+                <operand>5</operand>
+            </operation>
+            <operand>5</operand>
+        </operation>
+        <operand>8</operand>
+    </operation>
+</expression>

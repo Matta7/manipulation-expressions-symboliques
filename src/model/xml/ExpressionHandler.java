@@ -13,7 +13,7 @@ public class ExpressionHandler extends DefaultHandler {
         return adapter;
     }
 
-    @Override
+    /*@Override
     public void startDocument() {
         System.out.println("Start Document");
     }
@@ -21,7 +21,7 @@ public class ExpressionHandler extends DefaultHandler {
     @Override
     public void endDocument() {
         System.out.println("End Document");
-    }
+    }*/
 
     @Override
     public void startElement(
