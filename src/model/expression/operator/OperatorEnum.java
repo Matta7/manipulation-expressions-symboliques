@@ -36,6 +36,7 @@ public enum OperatorEnum {
     public int getArity() {
         return arity;
     }
+    
     public static OperatorEnum getOperator(String symbol, String type) {
         for (OperatorEnum operator : OperatorEnum.values()) {
             if (operator.getSymbol().equals(symbol) && operator.getExpressionType().contains(type)) {
