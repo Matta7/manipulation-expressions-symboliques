@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <expression type="arith" xmlns:expression="file://schema/expression.xsd">
-    <operation type="+">
+    <operation type="*">
         <operation type="-">
             <operation type="+">
                 <operand>2</operand>
@@ -11,3 +11,5 @@
         <operand>8</operand>
     </operation>
 </expression>
+<!-- 2 5 + 5 - 8 * -->
+<!-- ((2 + 5) - 5) * 8 -->

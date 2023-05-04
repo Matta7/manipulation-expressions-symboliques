@@ -121,7 +121,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         if (type.equals(Type.ARITHMETIC) || type.equals(Type.FUNCTION) || type.equals(Type.RATIONAL)) {
             handler.setActualType(type);
         } else {
-            throw new IllegalArgumentException("Unknown type.");
+            throw new IllegalArgumentException("Unknown type.\n");
         }
     }
 
@@ -130,7 +130,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         try {
             handler.getPeekExpression();
         } catch (EmptyStackException e) {
-            throw new IllegalStateException("Stack is empty.");
+            throw new IllegalStateException("Stack is empty.\n");
         }
 
         //On récupère le sommet de la pile sans le pop

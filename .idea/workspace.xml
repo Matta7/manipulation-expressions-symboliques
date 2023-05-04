@@ -5,22 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a01f14af-90ab-4955-8b65-e529d43716a6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/xml/FileValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xml/schema/expression.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xml/test.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/addOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/addOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/catOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/catOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/divOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/divOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/kleeneStarOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/kleeneStarOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/minusOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/minusOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/multOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/multOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/negOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/negOperator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/unionOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/unionOperator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/xml/test2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStackHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStackHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/xml/ExpressionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/ExpressionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/xml/XMLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xml/DTD.xsd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/xml/test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/xml/test.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +70,7 @@
       <recent name="C:\Users\Mathi\OneDrive\Bureau\M1\S2\Architecture logiciel\manipulation-expressions-symboliques\xml\schema" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.XMLManager">
+  <component name="RunManager" selected="Application.Expedid">
     <configuration name="Expedid" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.Expedid" />
       <module name="manipulation-expressions-symboliques" />
@@ -109,8 +99,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.XMLManager" />
         <item itemvalue="Application.Expedid" />
+        <item itemvalue="Application.XMLManager" />
       </list>
     </recent_temporary>
   </component>
@@ -129,7 +119,8 @@
       <workItem from="1683019051741" duration="120000" />
       <workItem from="1683019211092" duration="15920000" />
       <workItem from="1683104882429" duration="4917000" />
-      <workItem from="1683113981377" duration="4479000" />
+      <workItem from="1683113981377" duration="5104000" />
+      <workItem from="1683125788688" duration="24655000" />
     </task>
     <servers />
   </component>

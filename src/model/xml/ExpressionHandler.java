@@ -3,9 +3,15 @@ package model.xml;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.util.Stack;
+
 public class ExpressionHandler extends DefaultHandler {
 
     private StringBuilder currentValue = new StringBuilder();
+
+    private String currentExpression = "";
+
+    private Stack<String> operatorStack = new Stack<>();
 
     private XMLToExpressionAdapter adapter = new XMLToExpressionAdapter();
 
@@ -13,15 +19,15 @@ public class ExpressionHandler extends DefaultHandler {
         return adapter;
     }
 
-    /*@Override
-    public void startDocument() {
-        System.out.println("Start Document");
-    }
-
     @Override
     public void endDocument() {
-        System.out.println("End Document");
-    }*/
+        if (operatorStack.isEmpty() && !currentExpression.isEmpty()) {
+            currentExpression = currentExpression.substring(0, currentExpression.length()-1);
+            adapter.setExpression(currentExpression.toString());
+        } else {
+            throw new IllegalArgumentException("File is invalid.\n");
+        }
+    }
 
     @Override
     public void startElement(
@@ -33,18 +39,12 @@ public class ExpressionHandler extends DefaultHandler {
         // reset the tag value
         currentValue.setLength(0);
 
-        System.out.printf("Start Element : %s%n", qName);
-
-        if (qName.equalsIgnoreCase("staff")) {
-            // get tag's attribute by name
-            String id = attributes.getValue("id");
-            System.out.printf("Staff id : %s%n", id);
-        }
-
-        if (qName.equalsIgnoreCase("salary")) {
-            // get tag's attribute by index, 0 = first attribute
-            String currency = attributes.getValue(0);
-            System.out.printf("Currency :%s%n", currency);
+        if (qName.equalsIgnoreCase("expression")) {
+            String type = attributes.getValue("type");
+            adapter.setToken(type);
+        } else if (qName.equalsIgnoreCase("operation")) {
+            String opType = attributes.getValue("type");
+            operatorStack.push(opType);
         }
     }
 
@@ -53,40 +53,19 @@ public class ExpressionHandler extends DefaultHandler {
                            String localName,
                            String qName) {
 
-        System.out.printf("End Element : %s%n", qName);
-
-        if (qName.equalsIgnoreCase("name")) {
-            System.out.printf("Name : %s%n", currentValue.toString());
+        if (qName.equalsIgnoreCase("operand")) {
+            String operand = currentValue.toString();
+            currentExpression += operand + " ";
+        } else if (qName.equalsIgnoreCase("operation")) {
+            String operator = operatorStack.pop();
+            if (!operator.equals("$")) {
+                currentExpression += operator + " ";
+            }
         }
-
-        if (qName.equalsIgnoreCase("role")) {
-            System.out.printf("Role : %s%n", currentValue.toString());
-        }
-
-        if (qName.equalsIgnoreCase("salary")) {
-            System.out.printf("Salary : %s%n", currentValue.toString());
-        }
-
-        if (qName.equalsIgnoreCase("bio")) {
-            System.out.printf("Bio : %s%n", currentValue.toString());
-        }
-
     }
 
-    // http://www.saxproject.org/apidoc/org/xml/sax/ContentHandler.html#characters%28char%5B%5D,%20int,%20int%29
-    // SAX parsers may return all contiguous character data in a single chunk,
-    // or they may split it into several chunks
     @Override
     public void characters(char[] ch, int start, int length) {
-
-        // The characters() method can be called multiple times for a single text node.
-        // Some values may missing if assign to a new string
-
-        // avoid doing this
-        // value = new String(ch, start, length);
-
-        // better append it, works for single or multiple calls
         currentValue.append(ch, start, length);
-
     }
 }

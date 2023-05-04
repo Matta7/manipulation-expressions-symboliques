@@ -29,14 +29,14 @@ public class ExpressionStackHandler extends AbstractListenableModel {
             if (OperatorEnum.getOperator(command, actualType).getExpressionType().contains(actualType)) {
                 // Si c'est le cas, on vérifie qu'il y a assez d'éléments dans la pile pour appliquer l'opérateur
                 if (OperatorEnum.getOperator(command, actualType).getArity() <= stack.size()) {
-                    if (stack.peek().getToken() == actualType) {
+                    if (stack.peek().getToken().equals(actualType)) {
                         // Si c'est le cas, on applique l'opérateur
                         IExpression expression = getNewExpression();
                         // On construit l'model.expression fraichement créée avec les éléments de la pile
                         String res;
                         if (OperatorEnum.getOperator(command, actualType).getArity() == 2) {
                             IExpression expression2 = stack.pop();
-                            if (getPeekExpression().getToken() == expression2.getToken()) {
+                            if (getPeekExpression().getToken().equals(expression2.getToken())) {
                                 IExpression expression1 = stack.pop();
                                 res = expression1.getExpression() + " " + expression2.getExpression() + " " + command;
                             } else {

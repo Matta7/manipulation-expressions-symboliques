@@ -37,13 +37,13 @@ public class XMLManager {
      */
     public static void save(String fileName, IExpression expression) {
         //On vérifie que le fichier se termine en ".model.xml.xml" et que celui-ci n'est pas null
-        if (fileName == null || !fileName.endsWith(".xml")) {
+        if (FileValidator.isFileNameValid(fileName)) {
             throw new IllegalArgumentException("File name is invalid.");
         }
     }
 
     public static void main(String[] args) {
         String file = "xml/test.xml";
-        load(file);
+        System.out.println(load(file).toString());
     }
 }
