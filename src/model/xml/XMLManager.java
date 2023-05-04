@@ -1,9 +1,17 @@
 package model.xml;
 
 import model.expression.IExpression;
+import org.w3c.dom.Document;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 
 public class XMLManager {
 
@@ -25,8 +33,7 @@ public class XMLManager {
 
                 return handler.getExpression();
             } catch (Exception e) {
-                e.printStackTrace();
-                throw new IllegalArgumentException("Cannot read file " + fileName + ".\n");
+                throw new IllegalArgumentException(e.getMessage() + "\n");
             }
         }
         return null;
@@ -35,11 +42,22 @@ public class XMLManager {
     /**
      * Save an XML file.
      */
-    public static void save(String fileName, IExpression expression) {
-        //On vérifie que le fichier se termine en ".model.xml.xml" et que celui-ci n'est pas null
-        if (FileValidator.isFileNameValid(fileName)) {
+    public static void save(String fileName, IExpression expression) throws TransformerException, ParserConfigurationException {
+        if (!FileValidator.isFileNameValid(fileName)) {
             throw new IllegalArgumentException("File name is invalid.");
         }
+
+        ExpressionToXMLDocumentConverter converter = new ExpressionToXMLDocumentConverter(expression);
+        Document document = converter.getDocument();
+
+        // create the .xml file
+        //transform the DOM Object to an XML File
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        DOMSource domSource = new DOMSource(document);
+        StreamResult streamResult = new StreamResult(new File(fileName));
+
+        transformer.transform(domSource, streamResult);
     }
 
     public static void main(String[] args) {

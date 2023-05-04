@@ -1,5 +1,8 @@
 package model.expression;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
 public interface IExpression {
 
   //Retourne l'identifieur du type d'model.expression
@@ -12,5 +15,5 @@ public interface IExpression {
   void setExpression(String expression);
 
   //Sauvegarde l'model.expression dans un fichier au format XML
-  void save(String fileName);
+  void save(String fileName) throws TransformerException, ParserConfigurationException;
 }

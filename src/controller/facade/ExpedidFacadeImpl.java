@@ -7,6 +7,8 @@ import model.expression.operator.OperatorEnum;
 import model.stackhandler.ExpressionStackHandler;
 import view.ExpedidView;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.util.EmptyStackException;
 
 public class ExpedidFacadeImpl implements IExpedidFacade {
@@ -73,7 +75,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
                     if (separetedCommand.length == 2) {
                         try {
                             this.load(separetedCommand[1]);
-                        } catch (IllegalArgumentException e) {
+                        } catch (Exception e) {
                             view.show(e.getMessage());
                         }
                     } else {
@@ -125,7 +127,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         }
     }
 
-    public void save(String fileName) throws IllegalStateException, IllegalArgumentException {
+    public void save(String fileName) throws ParserConfigurationException, TransformerException {
         //On vérifie que la pile n'est pas vide
         try {
             handler.getPeekExpression();
@@ -135,14 +137,18 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
 
         //On récupère le sommet de la pile sans le pop
         IExpression expression = handler.getPeekExpression();
-        //On sauvegarde l'model.expression dans le fichier
+        //On sauvegarde l'expression dans le fichier
         expression.save(fileName);
     }
 
     public void load(String fileName) throws IllegalArgumentException {
-        IExpression expression = XMLManager.load(fileName);
+        try {
+            IExpression expression = XMLManager.load(fileName);
 
-        //On ajoute l'model.expression à la pile
-        handler.pushExpression(expression);
+            //On ajoute l'model.expression à la pile
+            handler.pushExpression(expression);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 }
