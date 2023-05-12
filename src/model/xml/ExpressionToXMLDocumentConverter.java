@@ -35,7 +35,7 @@ public class ExpressionToXMLDocumentConverter {
         // root element expression
         Element root = document.createElement("expression");
         Attr typeAttr = document.createAttribute("type");
-        Attr nsAttr = document.createAttribute("xmlns:expression");
+        Attr nsAttr = document.createAttribute("xmlns");
 
         typeAttr.setValue(expression.getToken());
         nsAttr.setValue("file://schema/expression.xsd");
@@ -55,19 +55,26 @@ public class ExpressionToXMLDocumentConverter {
                 switch (OperatorEnum.getOperator(symbol, expression.getToken()).getArity()) {
                     case 1 -> {
                         Element e = elementStack.pop();
-                        operator.appendChild(e);
+
+                        Element operatorType = document.createElement(e.getTagName() + "s");
+                        operatorType.appendChild(e);
+                        operator.appendChild(operatorType);
+
                         elementStack.push(operator);
                     }
                     case 2 -> {
                         Element e2 = elementStack.pop();
                         Element e1 = elementStack.pop();
-                        if (e1.getTagName().equals("operand") && e2.getTagName().equals("operation")) {
-                            operator.appendChild(e2);
-                            operator.appendChild(e1);
+
+                        Element operatorType;
+                        if (e1.getTagName().equals(e2.getTagName())) {
+                            operatorType = document.createElement(e1.getTagName() + "s");
                         } else {
-                            operator.appendChild(e1);
-                            operator.appendChild(e2);
+                            operatorType = document.createElement("mix");
                         }
+                        operatorType.appendChild(e1);
+                        operatorType.appendChild(e2);
+                        operator.appendChild(operatorType);
                         elementStack.push(operator);
                     }
                     default -> throw new IllegalArgumentException("File is invalid.\n");

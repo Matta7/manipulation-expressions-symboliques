@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:element name="expression" type="ExpressionType"/>
 
+  <!-- Expression Type -->
   <xs:complexType name="ExpressionType">
     <xs:sequence>
       <xs:element name="operation" type="OperationType"/>
@@ -10,14 +11,43 @@
     <xs:attribute name="type" type="exprType" use="required"/>
   </xs:complexType>
 
+  <!-- Operation Type -->
   <xs:complexType name="OperationType">
+    <!--
     <xs:sequence>
       <xs:element name="operation" type="OperationType" minOccurs="0" maxOccurs="2"/>
       <xs:element name="operand" type="xs:string" minOccurs="0" maxOccurs="2"/>
     </xs:sequence>
+    -->
+    <xs:choice>
+      <xs:element name="operands" type="OperandChoiceType"/>
+      <xs:element name="operations" type="OperationChoiceType"/>
+      <xs:element name="mix" type="OneOperandOneOperationChoiceType"/>
+    </xs:choice>
     <xs:attribute name="type" type="opType" use="required"/>
   </xs:complexType>
 
+  <!-- Choice Type (Operation Type child) -->
+  <xs:complexType name="OneOperandOneOperationChoiceType">
+    <xs:all>
+      <xs:element name="operand" type="xs:string"/>
+      <xs:element name="operation" type="OperationType"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="OperandChoiceType">
+    <xs:sequence>
+      <xs:element name="operand" type="xs:string" maxOccurs="2"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OperationChoiceType">
+    <xs:sequence>
+      <xs:element name="operation" type="OperationType" maxOccurs="2"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Enumeration -->
   <xs:simpleType name="exprType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="arith"/>
