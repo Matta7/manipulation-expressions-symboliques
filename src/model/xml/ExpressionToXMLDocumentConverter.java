@@ -35,7 +35,7 @@ public class ExpressionToXMLDocumentConverter {
         // root element expression
         Element root = document.createElement("expression");
         Attr typeAttr = document.createAttribute("type");
-        Attr nsAttr = document.createAttribute("xmlns");
+        Attr nsAttr = document.createAttribute("xmlns:expression");
 
         typeAttr.setValue(expression.getToken());
         nsAttr.setValue("file://schema/expression.xsd");

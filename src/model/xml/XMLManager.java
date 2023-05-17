@@ -1,6 +1,10 @@
 package model.xml;
 
 import model.expression.IExpression;
+import model.xml.validation.AbstractValidation;
+import model.xml.validation.FileExistValidation;
+import model.xml.validation.FileNameValidation;
+import model.xml.validation.ValidXMLValidation;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -19,9 +23,19 @@ public class XMLManager {
      * Load an XML file.
      */
     public static IExpression load(String fileName) {
-        String xsdPath = "xml/schema/expression.xsd";
 
-        if (FileValidator.isFileNameValid(fileName) && FileValidator.fileExists(fileName) && FileValidator.validateXMLSchema(xsdPath, fileName)) {
+        AbstractValidation chain = new FileNameValidation();
+
+        AbstractValidation xmlValidation = new ValidXMLValidation();
+        AbstractValidation fileExist = new FileExistValidation();
+
+        fileExist.setSuccessor(xmlValidation);
+        chain.setSuccessor(fileExist);
+
+        chain.setFileName(fileName);
+
+
+        if (chain.isValid()) {
             SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
 
             try {
@@ -36,28 +50,30 @@ public class XMLManager {
                 throw new IllegalArgumentException(e.getMessage() + "\n");
             }
         }
-        return null;
+        throw new IllegalArgumentException("Invalid file.\n");
     }
 
     /**
      * Save an XML file.
      */
     public static void save(String fileName, IExpression expression) throws TransformerException, ParserConfigurationException {
-        if (!FileValidator.isFileNameValid(fileName)) {
-            throw new IllegalArgumentException("File name is invalid.");
+
+        AbstractValidation chain = new FileNameValidation();
+        chain.setFileName(fileName);
+
+        if (chain.isValid()) {
+            ExpressionToXMLDocumentConverter converter = new ExpressionToXMLDocumentConverter(expression);
+            Document document = converter.getDocument();
+
+            // create the .xml file
+            //transform the DOM Object to an XML File
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(new File(fileName));
+
+            transformer.transform(domSource, streamResult);
         }
-
-        ExpressionToXMLDocumentConverter converter = new ExpressionToXMLDocumentConverter(expression);
-        Document document = converter.getDocument();
-
-        // create the .xml file
-        //transform the DOM Object to an XML File
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        DOMSource domSource = new DOMSource(document);
-        StreamResult streamResult = new StreamResult(new File(fileName));
-
-        transformer.transform(domSource, streamResult);
     }
 
     public static void main(String[] args) {
