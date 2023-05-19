@@ -2,18 +2,15 @@ package model.stackhandler;
 
 import controller.observer.AbstractListenableModel;
 import model.expression.IExpression;
-import model.expression.operator.OperatorEnum;
+import model.expression.operator.OperatorHandler;
 import model.expression.type.Type;
-import model.factory.ExpressionFactory;
-import model.factory.IExpressionFactory;
 
 import java.util.EmptyStackException;
-import java.util.Stack;
 
 public class ExpressionStackHandler extends AbstractListenableModel {
-    //Attributs
+
     private static ExpressionStackHandler handler = new ExpressionStackHandler();
-    private Stack<IExpression> stack = new Stack<>();
+    private ExpressionStack stack = new ExpressionStack();
     private String actualType = "";
 
     private ExpressionStackHandler() {}
@@ -24,17 +21,17 @@ public class ExpressionStackHandler extends AbstractListenableModel {
 
     public void handleCommand(String command) {
         // On vérifie si l'élément est un opérateur
-        if (OperatorEnum.isOperator(command, actualType)) {
+        if (OperatorHandler.isOperator(command, actualType)) {
             // Si c'est le cas, on vérifie qu'il est valide avec le type actuel d'model.expression manipulée
-            if (OperatorEnum.getOperator(command, actualType).getExpressionType().contains(actualType)) {
+            if (OperatorHandler.getOperator(command, actualType).getExpressionType().contains(actualType)) {
                 // Si c'est le cas, on vérifie qu'il y a assez d'éléments dans la pile pour appliquer l'opérateur
-                if (OperatorEnum.getOperator(command, actualType).getArity() <= stack.size()) {
+                if (OperatorHandler.getOperator(command, actualType).getArity() <= stack.size()) {
                     if (stack.peek().getToken().equals(actualType)) {
                         // Si c'est le cas, on applique l'opérateur
-                        IExpression expression = getNewExpression();
+                        IExpression expression = NewExpression.getNewExpression(actualType);
                         // On construit l'model.expression fraichement créée avec les éléments de la pile
                         String res;
-                        if (OperatorEnum.getOperator(command, actualType).getArity() == 2) {
+                        if (OperatorHandler.getOperator(command, actualType).getArity() == 2) {
                             IExpression expression2 = stack.pop();
                             if (getPeekExpression().getToken().equals(expression2.getToken())) {
                                 IExpression expression1 = stack.pop();
@@ -65,7 +62,7 @@ public class ExpressionStackHandler extends AbstractListenableModel {
             try {
                 Double.parseDouble(command);
                 // Si c'est le cas, on crée une nouvelle model.expression arithmétique avec l'élément
-                IExpression expression = getNewExpression();
+                IExpression expression = NewExpression.getNewExpression(actualType);
                 expression.setExpression(command);
                 stack.push(expression);
             } catch (NumberFormatException e) {
@@ -75,13 +72,13 @@ public class ExpressionStackHandler extends AbstractListenableModel {
         // Même chose que pour les expressions arithmétiques, à l'exception qu'on laisse passer la variable "x"
         else if (actualType.equals(Type.FUNCTION)) {
             if (command.matches("x")) {
-                IExpression expression = getNewExpression();
+                IExpression expression = NewExpression.getNewExpression(actualType);
                 expression.setExpression(command);
                 stack.push(expression);
             } else {
                 try {
                     Double.parseDouble(command);
-                    IExpression expression = getNewExpression();
+                    IExpression expression = NewExpression.getNewExpression(actualType);
                     expression.setExpression(command);
                     stack.push(expression);
                 } catch (NumberFormatException e) {
@@ -92,7 +89,7 @@ public class ExpressionStackHandler extends AbstractListenableModel {
         // Pour les expressions rationnelles, on vérifie que l'élément est soit un caractère alphabétique minuscule ou 1.
         else if (actualType.equals(Type.RATIONAL)) {
             if (command.matches("[a-z]|1")) {
-                IExpression expression = getNewExpression();
+                IExpression expression = NewExpression.getNewExpression(actualType);
                 expression.setExpression(command);
                 stack.push(expression);
             } else {
@@ -104,45 +101,7 @@ public class ExpressionStackHandler extends AbstractListenableModel {
 
 
     public String toString() {
-        if (stack.isEmpty()) {
-            return "Stack is empty.";
-        }
-
-        int stackIndex = stack.size();
-        StringBuilder stackStr = new StringBuilder();
-
-        for (IExpression expression : stack) {
-            stackIndex-=1;
-            stackStr.append(stackIndex)
-                    .append(" : ")
-                    .append(expression.toString());
-
-            if(stackIndex != 0) {
-                stackStr.append("\n");
-            }
-        }
-
-        return stackStr.toString();
-    }
-
-    private IExpression getNewExpression() throws IllegalArgumentException {
-        IExpressionFactory factory = ExpressionFactory.getInstance();
-
-        switch (actualType) {
-            case Type.ARITHMETIC -> {
-                return factory.makeArithmetic();
-            }
-
-            case Type.FUNCTION -> {
-                return factory.makeFunction();
-            }
-
-            case (Type.RATIONAL) -> {
-                return factory.makeRational();
-            }
-
-            default -> throw new IllegalStateException("No type defined.\n");
-        }
+        return stack.toString();
     }
 
     public String getActualType() {

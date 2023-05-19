@@ -4,7 +4,7 @@ import model.expression.type.Type;
 
 import java.util.Set;
 
-public enum OperatorEnum {
+public enum OperatorEnum implements IOperator {
     ADDITION("+", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
     SOUSTRACTION("-", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
     MULTIPLICATION("*", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
@@ -35,33 +35,5 @@ public enum OperatorEnum {
 
     public int getArity() {
         return arity;
-    }
-    
-    public static OperatorEnum getOperator(String symbol, String type) {
-        for (OperatorEnum operator : OperatorEnum.values()) {
-            if (operator.getSymbol().equals(symbol) && operator.getExpressionType().contains(type)) {
-                return operator;
-            }
-        }
-        return null;
-    }
-
-    public static boolean isOperator(String symbol, String type) {
-        return getOperator(symbol, type) != null;
-    }
-
-    public static boolean isArithmeticOperator(String symbol) {
-        OperatorEnum operator = getOperator(symbol, Type.ARITHMETIC);
-        return operator != null;
-    }
-
-    public static boolean isFunctionOperator(String symbol) {
-        OperatorEnum operator = getOperator(symbol, Type.FUNCTION);
-        return operator != null;
-    }
-
-    public static boolean isRationalOperator(String symbol) {
-        OperatorEnum operator = getOperator(symbol, Type.RATIONAL);
-        return operator != null;
     }
 }

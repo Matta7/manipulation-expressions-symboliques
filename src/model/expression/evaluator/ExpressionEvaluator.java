@@ -19,7 +19,7 @@ public class ExpressionEvaluator {
         if (expression.getToken().equals(Type.ARITHMETIC)) {
             return calculateExpression(expression);
         } else if (expression.getToken().equals(Type.FUNCTION)) {
-            // Si "x" est dans l'model.expression, alors on vérifie que xValue ne soit pas null et on remplace toutes les occurences de "x" par xValue.
+            // Si "x" est dans l'expression, alors on vérifie que xValue ne soit pas null et on remplace toutes les occurences de "x" par xValue.
             if (expression.getExpression().contains("x")) {
                 return "Invalid command, could not replace x, xValue is null";
             } else {
@@ -36,7 +36,7 @@ public class ExpressionEvaluator {
         if (expression.getToken().equals(Type.ARITHMETIC)) {
             return "Wrong number of argument.";
         } else if (expression.getToken().equals(Type.FUNCTION)) {
-            // Si "x" est dans l'model.expression, alors on vérifie que xValue ne soit pas null et on remplace toutes les occurences de "x" par xValue.
+            // Si "x" est dans l'expression, alors on vérifie que xValue ne soit pas null et on remplace toutes les occurences de "x" par xValue.
             if (expression.getExpression().contains("x")) {
                 if (xValue != null) {
                     IExpression calculableExpression = new ArithmeticExpression();
@@ -49,14 +49,14 @@ public class ExpressionEvaluator {
                 return calculateExpression(expression);
             }
         } else if (expression.getToken().equals(Type.RATIONAL)) {
-            return "Invalid model.expression, cannot evaluate rational expressions";
+            return "Invalid expression, cannot evaluate rational expressions";
         } else {
             return "Unknown file type.";
         }
     }
 
     private String calculateExpression(IExpression expression) throws IllegalArgumentException {
-        // On calcule le résultat de l'model.expression, il s'agit une chaine de caractères contenant des nombres sous forme de chaine de caractères,
+        // On calcule le résultat de l'expression, il s'agit une chaine de caractères contenant des nombres sous forme de chaine de caractères,
         // qui peuvent être convertis en nombres réels, grace a Double.parseDouble (voir ci-dessous) et de symboles d'opérateurs.
 
         // La notation se fait en notation polonaise inverse, c'est à dire que les opérateurs sont placés après les opérandes.

@@ -1,7 +1,7 @@
 package model.xml;
 
 import model.expression.IExpression;
-import model.expression.operator.OperatorEnum;
+import model.expression.operator.OperatorHandler;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -46,13 +46,13 @@ public class ExpressionToXMLDocumentConverter {
         document.appendChild(root);
 
         for (String symbol : expression.getExpression().split(" ")) {
-            if (OperatorEnum.isOperator(symbol, expression.getToken())) {
+            if (OperatorHandler.isOperator(symbol, expression.getToken())) {
                 Element operator = document.createElement("operation");
                 Attr opTypeAttr = document.createAttribute("type");
                 opTypeAttr.setValue(symbol);
                 operator.setAttributeNode(opTypeAttr);
 
-                switch (OperatorEnum.getOperator(symbol, expression.getToken()).getArity()) {
+                switch (OperatorHandler.getOperator(symbol, expression.getToken()).getArity()) {
                     case 1 -> {
                         Element e = elementStack.pop();
 

@@ -75,9 +75,4 @@ public class XMLManager {
             transformer.transform(domSource, streamResult);
         }
     }
-
-    public static void main(String[] args) {
-        String file = "xml/test.xml";
-        System.out.println(load(file).toString());
-    }
 }
