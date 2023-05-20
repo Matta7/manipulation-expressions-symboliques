@@ -56,12 +56,12 @@ public class ExpressionStackHandler extends AbstractListenableModel {
                 throw new IllegalArgumentException("Operator \"" + command + "\" is not valid for " + actualType + " expressions.\n");
             }
         }
-        // Sinon, on vérifie si l'élément est valide pour le type d'model.expression actuel.
+        // Sinon, on vérifie si l'élément est valide pour le type d'expression actuel.
         // Dans le cas d'expressions arithmétiques, on vérifie que l'élément est un nombre, au regard du type Double.
         else if (actualType.equals(Type.ARITHMETIC)) {
             try {
                 Double.parseDouble(command);
-                // Si c'est le cas, on crée une nouvelle model.expression arithmétique avec l'élément
+                // Si c'est le cas, on crée une nouvelle expression arithmétique avec l'élément
                 IExpression expression = NewExpression.getNewExpression(actualType);
                 expression.setExpression(command);
                 stack.push(expression);

@@ -41,11 +41,13 @@ public class XMLManager {
             try {
                 SAXParser saxParser = saxParserFactory.newSAXParser();
 
-                ExpressionHandler handler = new ExpressionHandler();
+                XMLToExpressionHandler handler = new XMLToExpressionHandler();
 
                 saxParser.parse(fileName, handler);
 
-                return handler.getExpression();
+                XMLToExpressionAdapter adapter = new XMLToExpressionAdapter(handler);
+
+                return adapter;
             } catch (Exception e) {
                 throw new IllegalArgumentException(e.getMessage() + "\n");
             }

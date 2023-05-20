@@ -5,25 +5,28 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.Stack;
 
-public class ExpressionHandler extends DefaultHandler {
+public class XMLToExpressionHandler extends DefaultHandler {
 
     private StringBuilder currentValue = new StringBuilder();
+
+    private String currentType = "";
 
     private String currentExpression = "";
 
     private Stack<String> operatorStack = new Stack<>();
 
-    private XMLToExpressionAdapter adapter = new XMLToExpressionAdapter();
+    public String getCurrentExpression() {
+        return currentExpression;
+    }
 
-    public XMLToExpressionAdapter getExpression() {
-        return adapter;
+    public String getCurrentType() {
+        return currentType;
     }
 
     @Override
     public void endDocument() {
         if (operatorStack.isEmpty() && !currentExpression.isEmpty()) {
             currentExpression = currentExpression.substring(0, currentExpression.length()-1);
-            adapter.setExpression(currentExpression.toString());
         } else {
             throw new IllegalArgumentException("File is invalid.\n");
         }
@@ -41,7 +44,7 @@ public class ExpressionHandler extends DefaultHandler {
 
         if (qName.equalsIgnoreCase("expression")) {
             String type = attributes.getValue("type");
-            adapter.setToken(type);
+            currentType = type;
         } else if (qName.equalsIgnoreCase("operation")) {
             String opType = attributes.getValue("type");
             operatorStack.push(opType);

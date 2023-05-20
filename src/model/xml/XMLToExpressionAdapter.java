@@ -1,13 +1,17 @@
 package model.xml;
 
 import model.expression.Expression;
+import model.expression.IExpression;
 import model.expression.type.Type;
 
-public class XMLToExpressionAdapter extends Expression {
+public class XMLToExpressionAdapter extends Expression implements IExpression {
 
     private String token;
 
-    public XMLToExpressionAdapter() {}
+    public XMLToExpressionAdapter(XMLToExpressionHandler handler) {
+        this.setToken(handler.getCurrentType());
+        this.setExpression(handler.getCurrentExpression());
+    }
 
     public String getToken() {
         return token;

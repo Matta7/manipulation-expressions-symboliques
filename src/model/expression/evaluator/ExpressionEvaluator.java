@@ -63,7 +63,7 @@ public class ExpressionEvaluator {
 
         // On utilise une pile pour stocker les opérandes et les opérateurs.
         Stack<String> stack = new Stack<>();
-        // On sépare l'model.expression en un tableau de String, en utilisant l'espace comme séparateur.
+        // On sépare l'expression en un tableau de String, en utilisant l'espace comme séparateur.
         String[] expressionArray = expression.getExpression().split(" ");
         // On parcourt le tableau de String.
         for (String symbol : expressionArray) {
@@ -113,7 +113,7 @@ public class ExpressionEvaluator {
     // On vérifie si l'model.expression est nullable, c'est à dire si elle reconnaît le mot vide.
     // On utilise une pile pour stocker les opérandes et les opérateurs.
     Stack<Boolean> stack = new Stack<>();
-    // On sépare l'model.expression en un tableau de String, en utilisant l'espace comme séparateur.
+    // On sépare l'expression en un tableau de String, en utilisant l'espace comme séparateur.
     String[] expressionArray = expression.getExpression().split(" ");
     // On parcourt le tableau de String.
         for (String symbol : expressionArray) {
@@ -140,10 +140,10 @@ public class ExpressionEvaluator {
             }
         }
 
-    // On retourne le dernier élément de la pile, qui est le résultat de l'model.expression.
+    // On retourne le dernier élément de la pile, qui est le résultat de l'expression.
     // On s'assure que la pile ne contienne qu'un seul élément.
     if (stack.size() != 1) {
-      throw new IllegalArgumentException("Invalid model.expression");
+      throw new IllegalArgumentException("Invalid expression");
     }
 
     return stack.pop();

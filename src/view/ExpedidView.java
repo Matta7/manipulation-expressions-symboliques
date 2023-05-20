@@ -30,8 +30,6 @@ public class ExpedidView implements ModelListener {
 
     @Override
     public void somethingHasChanged(Object source) {
-        if (source instanceof ExpressionStackHandler) {
-            this.showStack();
-        }
+        this.showStack();
     }
 }

@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a01f14af-90ab-4955-8b65-e529d43716a6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/expression/operator/IOperator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/expression/operator/OperatorHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/stackhandler/NewExpression.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xml/test4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xml/tt.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/expression/evaluator/ExpressionEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/evaluator/ExpressionEvaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/OperatorEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/OperatorEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStackHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStackHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/xml/ExpressionToXMLDocumentConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/ExpressionToXMLDocumentConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/ExpressionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLToExpressionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/xml/XMLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ExpedidView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ExpedidView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +132,10 @@
       <workItem from="1684233613401" duration="76000" />
       <workItem from="1684280497827" duration="3101000" />
       <workItem from="1684449915799" duration="582000" />
-      <workItem from="1684495122332" duration="5281000" />
+      <workItem from="1684495122332" duration="7777000" />
+      <workItem from="1684534228325" duration="7517000" />
+      <workItem from="1684581136858" duration="12408000" />
+      <workItem from="1684605120633" duration="1503000" />
     </task>
     <servers />
   </component>
