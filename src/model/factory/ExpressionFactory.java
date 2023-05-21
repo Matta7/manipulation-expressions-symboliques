@@ -7,13 +7,8 @@ import model.expression.RationalExpression;
 
 public class ExpressionFactory implements IExpressionFactory {
 
-    private static IExpressionFactory factory = new ExpressionFactory();
+    public ExpressionFactory() {}
 
-    private ExpressionFactory() {}
-
-    public static IExpressionFactory getInstance() {
-        return factory;
-    }
 
     @Override
     public IExpression makeArithmetic() {

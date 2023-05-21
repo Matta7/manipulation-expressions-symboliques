@@ -7,13 +7,8 @@ import model.expression.type.Type;
 import java.util.Stack;
 
 public class ExpressionEvaluator {
-    private static ExpressionEvaluator instance = new ExpressionEvaluator();
 
-    private ExpressionEvaluator() {}
-
-    public static ExpressionEvaluator getInstance() {
-        return instance;
-    }
+    public ExpressionEvaluator() {}
 
     public String evaluate(IExpression expression) {
         if (expression.getToken().equals(Type.ARITHMETIC)) {

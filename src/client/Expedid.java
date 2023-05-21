@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Expedid {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        IExpedidFacade expedid = ExpedidFacadeImpl.getInstance();
+        IExpedidFacade expedid = new ExpedidFacadeImpl();
         String command;
 
         while (true) {

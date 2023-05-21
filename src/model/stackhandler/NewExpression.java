@@ -7,7 +7,7 @@ import model.factory.IExpressionFactory;
 
 public class NewExpression {
     public static IExpression getNewExpression(String type) throws IllegalArgumentException {
-        IExpressionFactory factory = ExpressionFactory.getInstance();
+        IExpressionFactory factory = new ExpressionFactory();
 
         switch (type) {
             case Type.ARITHMETIC -> {

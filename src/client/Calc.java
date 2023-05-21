@@ -7,7 +7,7 @@ public class Calc {
 
     public static void main(String[] args) {
 
-        ICalcFacade calc = CalcFacadeImpl.getInstance();
+        ICalcFacade calc = new CalcFacadeImpl();
         System.out.println(calc.calc(args));
 
         /*IExpression model.expression = new FunctionExpression();

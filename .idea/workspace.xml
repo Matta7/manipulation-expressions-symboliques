@@ -6,12 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="a01f14af-90ab-4955-8b65-e529d43716a6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Calc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Calc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Expedid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Expedid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/Nullable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Nullable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/facade/CalcFacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/CalcFacadeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/facade/ExpedidFacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/ExpedidFacadeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/facade/NullableFacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/NullableFacadeImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/expression/evaluator/ExpressionEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/evaluator/ExpressionEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/factory/ExpressionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/factory/ExpressionFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStackHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStackHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/xml/ExpressionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLToExpressionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/xml/XMLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/stackhandler/NewExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/stackhandler/NewExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ExpedidView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ExpedidView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xml/test.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/xml/test2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/xml/test3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/xml/test4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/xml/tt.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +145,10 @@
       <workItem from="1684495122332" duration="7777000" />
       <workItem from="1684534228325" duration="7517000" />
       <workItem from="1684581136858" duration="12408000" />
-      <workItem from="1684605120633" duration="1503000" />
+      <workItem from="1684605120633" duration="2977000" />
+      <workItem from="1684625468459" duration="2855000" />
+      <workItem from="1684681515897" duration="882000" />
+      <workItem from="1684684543516" duration="8032000" />
     </task>
     <servers />
   </component>

@@ -13,19 +13,14 @@ import java.util.EmptyStackException;
 
 public class ExpedidFacadeImpl implements IExpedidFacade {
     //Attributs
-    private ExpressionStackHandler handler = ExpressionStackHandler.getInstance();
+    private ExpressionStackHandler handler = new ExpressionStackHandler();
 
     private ExpedidView view = new ExpedidView(handler);
 
-    private static ExpedidFacadeImpl expedidFacade = new ExpedidFacadeImpl();
 
-    private ExpedidFacadeImpl() {
+    public ExpedidFacadeImpl() {
         handler.addModelListener(view);
         view.show("");
-    }
-
-    public static ExpedidFacadeImpl getInstance() {
-        return expedidFacade;
     }
 
     public void enter(String command) throws IllegalArgumentException, IllegalStateException, NumberFormatException {

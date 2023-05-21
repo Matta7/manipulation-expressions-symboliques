@@ -6,7 +6,7 @@ import controller.facade.NullableFacadeImpl;
 public class Nullable {
     public static void main(String[] args) {
 
-        INullableFacade nullable = NullableFacadeImpl.getInstance();
+        INullableFacade nullable = new NullableFacadeImpl();
         System.out.println(nullable.nullable(args));
 
         /*IExpression model.expression = new RationalExpression();

@@ -8,16 +8,10 @@ import model.expression.type.Type;
 import java.util.EmptyStackException;
 
 public class ExpressionStackHandler extends AbstractListenableModel {
-
-    private static ExpressionStackHandler handler = new ExpressionStackHandler();
     private ExpressionStack stack = new ExpressionStack();
     private String actualType = "";
 
-    private ExpressionStackHandler() {}
-
-    public static ExpressionStackHandler getInstance() {
-        return handler;
-    }
+    public ExpressionStackHandler() {}
 
     public void handleCommand(String command) {
         // On vérifie si l'élément est un opérateur
