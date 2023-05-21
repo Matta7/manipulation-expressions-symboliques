@@ -5,20 +5,43 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.Stack;
 
+/**
+ * Class that use DefaultHandler to parse an XML file.
+ */
 public class XMLToExpressionHandler extends DefaultHandler {
 
+    /**
+     * The current value parsed by SAX parser.
+     */
     private StringBuilder currentValue = new StringBuilder();
 
+    /**
+     * The type of the current expression.
+     */
     private String currentType = "";
 
+    /**
+     * The current expression with a String type.
+     */
     private String currentExpression = "";
 
+    /**
+     * A stack to build the expression.
+     */
     private Stack<String> operatorStack = new Stack<>();
 
+    /**
+     * Get the current expression built.
+     * @return the expression built.
+     */
     public String getCurrentExpression() {
         return currentExpression;
     }
 
+    /**
+     * Get the current type of the expression.
+     * @return the type.
+     */
     public String getCurrentType() {
         return currentType;
     }

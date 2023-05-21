@@ -11,6 +11,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.util.EmptyStackException;
 
+/**
+ * Interface that the user use with Expedid program.
+ */
 public class ExpedidFacadeImpl implements IExpedidFacade {
     //Attributs
     private ExpressionStackHandler handler = new ExpressionStackHandler();
@@ -133,7 +136,7 @@ public class ExpedidFacadeImpl implements IExpedidFacade {
         //On récupère le sommet de la pile sans le pop
         IExpression expression = handler.getPeekExpression();
         //On sauvegarde l'expression dans le fichier
-        expression.save(fileName);
+        XMLManager.save(fileName, expression);
     }
 
     public void load(String fileName) throws IllegalArgumentException {

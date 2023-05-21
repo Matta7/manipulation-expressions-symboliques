@@ -5,23 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a01f14af-90ab-4955-8b65-e529d43716a6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Calc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Calc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Expedid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Expedid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/Nullable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/Nullable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/facade/CalcFacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/CalcFacadeImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/facade/ExpedidFacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/ExpedidFacadeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/facade/ICalcFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/ICalcFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/facade/IExpedidFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/IExpedidFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/facade/INullableFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/INullableFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/facade/NullableFacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/facade/NullableFacadeImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/observer/AbstractListenableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/observer/AbstractListenableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/observer/ListenableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/observer/ListenableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/observer/ModelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/observer/ModelListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/ArithmeticExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/ArithmeticExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/FunctionExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/FunctionExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/IExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/IExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/RationalExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/RationalExpression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/expression/evaluator/ExpressionEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/evaluator/ExpressionEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/IOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/IOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/OperatorEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/OperatorEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/operator/OperatorHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/operator/OperatorHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/expression/type/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/expression/type/Type.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/factory/ExpressionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/factory/ExpressionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/factory/IExpressionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/factory/IExpressionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStackHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/stackhandler/ExpressionStackHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/stackhandler/NewExpression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/stackhandler/NewExpression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/ExpressionToXMLDocumentConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/ExpressionToXMLDocumentConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/XMLManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLToExpressionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xml/test.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xml/test2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xml/test3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xml/test4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xml/tt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/XMLToExpressionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/XMLToExpressionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/validation/AbstractValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/validation/AbstractValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/validation/FileExistValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/validation/FileExistValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/validation/FileNameValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/validation/FileNameValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/xml/validation/ValidXMLValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/xml/validation/ValidXMLValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ExpedidView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ExpedidView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +167,7 @@
       <workItem from="1684625468459" duration="2855000" />
       <workItem from="1684681515897" duration="882000" />
       <workItem from="1684684543516" duration="8032000" />
+      <workItem from="1684698546857" duration="3766000" />
     </task>
     <servers />
   </component>

@@ -1,10 +1,8 @@
 package model.expression;
 
-import model.xml.XMLManager;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-
+/**
+ * Class that define all expression method globally.
+ */
 public abstract class Expression implements IExpression {
     private String expression;
 
@@ -16,10 +14,6 @@ public abstract class Expression implements IExpression {
 
     public void setExpression(String expression) {
         this.expression = expression;
-    }
-
-    public void save(String fileName) throws TransformerException, ParserConfigurationException {
-        XMLManager.save(fileName, this);
     }
 
     public String toString() {

@@ -3,6 +3,9 @@ package controller.facade;
 import model.expression.evaluator.ExpressionEvaluator;
 import model.xml.XMLManager;
 
+/**
+ * Interface that the user use with Nullable program.
+ */
 public class NullableFacadeImpl implements INullableFacade {
     public NullableFacadeImpl() {}
 

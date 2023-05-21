@@ -1,5 +1,8 @@
 package model.xml.validation;
 
+/**
+ * Class that valid the file name.
+ */
 public class FileNameValidation extends AbstractValidation {
 
     @Override

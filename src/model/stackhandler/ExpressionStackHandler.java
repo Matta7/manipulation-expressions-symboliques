@@ -7,12 +7,27 @@ import model.expression.type.Type;
 
 import java.util.EmptyStackException;
 
+/**
+ * Class that manage our stack.
+ */
 public class ExpressionStackHandler extends AbstractListenableModel {
+
+    /**
+     * The stack of IExpression.
+     */
     private ExpressionStack stack = new ExpressionStack();
+
+    /**
+     * The actual type defined by the user.
+     */
     private String actualType = "";
 
     public ExpressionStackHandler() {}
 
+    /**
+     * Method that handle a command, to push in the stack.
+     * @param command the command to handle.
+     */
     public void handleCommand(String command) {
         // On vérifie si l'élément est un opérateur
         if (OperatorHandler.isOperator(command, actualType)) {
@@ -93,27 +108,50 @@ public class ExpressionStackHandler extends AbstractListenableModel {
         hasChanged();
     }
 
-
+    /**
+     * Return the String that represents the stack.
+     * @return the String.
+     */
     public String toString() {
         return stack.toString();
     }
 
+    /**
+     * Get the actual type.
+     * @return
+     */
     public String getActualType() {
         return actualType;
     }
 
+    /**
+     * Set the actual type.
+     * @param type the type to set.
+     */
     public void setActualType(String type) {
         actualType = type;
     }
 
+    /**
+     * Method that return true if the actual type is defined, false otherwise.
+     * @return a boolean.
+     */
     public boolean isActualTypeDefined() {
         return actualType.matches(Type.ARITHMETIC + "|" + Type.FUNCTION + "|" + Type.RATIONAL);
     }
 
+    /**
+     * Push an expression at the top of the stack.
+     * @param expression the expression to push.
+     */
     public void pushExpression(IExpression expression) {
         stack.push(expression);
     }
 
+    /**
+     * Get the IExpression at the top of the stack.
+     * @return
+     */
     public IExpression getPeekExpression() throws EmptyStackException {
         return stack.peek();
     }

@@ -4,14 +4,49 @@ import model.expression.type.Type;
 
 import java.util.Set;
 
+/**
+ * Enum that define some operators.
+ */
 public enum OperatorEnum implements IOperator {
+
+    /**
+     * Add operator "+".
+     */
     ADDITION("+", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
+
+    /**
+     * Sub operator "-".
+     */
     SOUSTRACTION("-", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
+
+    /**
+     * Mul operator "*".
+     */
     MULTIPLICATION("*", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
+
+    /**
+     * Div operator "/".
+     */
     DIVISION("/", Set.of(Type.ARITHMETIC, Type.FUNCTION), 2),
+
+    /**
+     * Neg operator "~".
+     */
     NEGATION("~", Set.of(Type.ARITHMETIC, Type.FUNCTION), 1),
+
+    /**
+     * Union operator "+".
+     */
     UNION("+", Set.of(Type.RATIONAL), 2),
+
+    /**
+     * Concat operator ".".
+     */
     CONCATENATION(".", Set.of(Type.RATIONAL), 2),
+
+    /**
+     * Kleene Star operator "*".
+     */
     ETOILE("*", Set.of(Type.RATIONAL), 1);
     //NEUTRAL("$", null, 1);
 

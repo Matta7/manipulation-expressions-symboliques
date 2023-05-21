@@ -20,7 +20,9 @@ import java.io.File;
 public class XMLManager {
 
     /**
-     * Load an XML file.
+     * Load an XML file using a filename.
+     * @param fileName The file name to load
+     * @return the IExpression built and loaded.
      */
     public static IExpression load(String fileName) {
 
@@ -57,6 +59,8 @@ public class XMLManager {
 
     /**
      * Save an XML file.
+     * @param fileName The file name of the saved file.
+     * @param expression The expression to save.
      */
     public static void save(String fileName, IExpression expression) throws TransformerException, ParserConfigurationException {
 

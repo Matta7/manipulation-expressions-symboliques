@@ -2,7 +2,14 @@ package controller.observer;
 
 import java.util.*;
 
+/**
+ * Abstract class that define a listenable class
+ */
 public abstract class AbstractListenableModel implements ListenableModel {
+
+    /**
+     * List of listeners that listen this.
+     */
     private List<ModelListener> listeners;
 
     public AbstractListenableModel() {
@@ -19,6 +26,9 @@ public abstract class AbstractListenableModel implements ListenableModel {
         listeners.remove(l);
     }
 
+    /**
+     * Method to call when something has changed, notify all the listeners.
+     */
     protected void hasChanged() {
         for (ModelListener l : listeners)
             l.somethingHasChanged(this);

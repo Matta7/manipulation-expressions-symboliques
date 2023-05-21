@@ -5,7 +5,16 @@ import model.expression.type.Type;
 import model.factory.ExpressionFactory;
 import model.factory.IExpressionFactory;
 
+/**
+ * Class that build an expression using a type.
+ */
 public class NewExpression {
+
+    /**
+     * Return an IExpression using a type, and using the factory.
+     * @param type the type of IExpression to build.
+     * @return the expression built.
+     */
     public static IExpression getNewExpression(String type) throws IllegalArgumentException {
         IExpressionFactory factory = new ExpressionFactory();
 

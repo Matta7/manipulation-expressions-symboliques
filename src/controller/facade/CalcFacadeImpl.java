@@ -3,6 +3,9 @@ package controller.facade;
 import model.expression.evaluator.ExpressionEvaluator;
 import model.xml.XMLManager;
 
+/**
+ * Interface that the user use with Calc program.
+ */
 public class CalcFacadeImpl implements ICalcFacade {
 
     public CalcFacadeImpl() {}

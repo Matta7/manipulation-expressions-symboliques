@@ -11,20 +11,37 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.Stack;
 
+/**
+ * Class that convert an IExpression into a Document DOM.
+ */
 public class ExpressionToXMLDocumentConverter {
 
+    /**
+     * Expression to convert.
+     */
     private final IExpression expression;
 
+    /**
+     * Stack to build the Document.
+     */
     private Stack<Element> elementStack = new Stack<>();
 
     public ExpressionToXMLDocumentConverter(IExpression expression) {
         this.expression = expression;
     }
 
+    /**
+     * Return the expression.
+     * @return IExpression
+     */
     public IExpression getExpression() {
         return expression;
     }
 
+    /**
+     * Build a Document object with the expression.
+     * @return the Document built
+     */
     public Document getDocument() throws ParserConfigurationException {
         DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
 

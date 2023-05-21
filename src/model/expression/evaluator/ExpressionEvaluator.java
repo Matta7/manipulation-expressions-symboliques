@@ -10,6 +10,11 @@ public class ExpressionEvaluator {
 
     public ExpressionEvaluator() {}
 
+    /**
+     * Evaluate an expression.
+     * @param expression The expression to evaluate.
+     * @return
+     */
     public String evaluate(IExpression expression) {
         if (expression.getToken().equals(Type.ARITHMETIC)) {
             return calculateExpression(expression);
@@ -50,6 +55,11 @@ public class ExpressionEvaluator {
         }
     }
 
+    /**
+     * Calculate an expression.
+     * @param expression the expression to calculate.
+     * @return the result of the calcul.
+     */
     private String calculateExpression(IExpression expression) throws IllegalArgumentException {
         // On calcule le résultat de l'expression, il s'agit une chaine de caractères contenant des nombres sous forme de chaine de caractères,
         // qui peuvent être convertis en nombres réels, grace a Double.parseDouble (voir ci-dessous) et de symboles d'opérateurs.
@@ -101,6 +111,11 @@ public class ExpressionEvaluator {
         return stack.pop();
     }
 
+    /**
+     * Return true if the expression is nullable, false otherwise.
+     * @param expression the expression to check.
+     * @return true or false.
+     */
     public Boolean isNullable(IExpression expression) throws IllegalArgumentException {
     if (!expression.getToken().equals(Type.RATIONAL)) {
       throw new IllegalArgumentException("Expression type not supported.");

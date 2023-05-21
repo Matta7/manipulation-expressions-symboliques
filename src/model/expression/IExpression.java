@@ -1,19 +1,26 @@
 package model.expression;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-
+/**
+ * Interface that define an expression.
+ */
 public interface IExpression {
 
-  //Retourne l'identifieur du type d'model.expression
+  /**
+   * Get the type of the expression.
+   * @return the type.
+   */
   String getToken();
 
-  //Retourne l'model.expression sous forme de String
+  /**
+   * Get the expression.
+   * @return the expression.
+   */
   String getExpression();
 
-  //Sauvegarde la chaine de caractere dans l'model.expression
+  /**
+   * Set the expression.
+   * @param expression the expression to set.
+   */
   void setExpression(String expression);
 
-  //Sauvegarde l'model.expression dans un fichier au format XML
-  void save(String fileName) throws TransformerException, ParserConfigurationException;
 }

@@ -10,6 +10,9 @@ import javax.xml.validation.Validator;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class that valid an XML using an XML Schema.
+ */
 public class ValidXMLValidation extends AbstractValidation {
 
     @Override
